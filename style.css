@@ -86,50 +86,52 @@ body {
 
 /* --- Cards Section --- */
 .cards-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 200px;
-    padding: 100px 0 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 200px;
+  padding: 100px 0 300px;
 }
 
 .card {
-    width: clamp(200px, 30vw, 320px);
-    height: clamp(300px, 45vw, 440px);
-    perspective: 1200px;
+  width: clamp(200px, 30vw, 320px);
+  height: clamp(300px, 45vw, 440px);
+  perspective: 1800px; /* deep 3D perspective */
 }
 
 .card-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transform-origin: center center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  cursor: pointer;
 }
 
-.card-front,
-.card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    transition: filter 0.3s ease;
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  backface-visibility: hidden;
+  transition: box-shadow 0.3s ease, filter 0.3s ease;
 }
 
 .card-front {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+  background: linear-gradient(135deg, #3498db, #2980b9);
 }
 
 .card-back {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    transform: rotateY(180deg);
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  transform: rotateY(180deg);
 }
+
+
 
 /* --- Extra Content After Cards --- */
 .after-cards {
