@@ -3,68 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hero Word + Scroll Cards</title>
-<link rel="stylesheet" href="style.css">
+<title>Hero Cylinder + Flip Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
 <!-- Navbar -->
-<nav class="navbar">
-  <div class="logo">ZYN</div>
-  <div class="links">
-    <a href="#">Home</a>
-    <a href="#">Cards</a>
-    <a href="#">About</a>
-  </div>
-</nav>
+<header class="navbar">
+  <div class="logo">Rotation</div>
+</header>
 
-<!-- Hero Section -->
-<div class="hero-wrapper">
-  <h1 class="hero-word">ZYN</h1>
-</div>
-
-<!-- Intro Section -->
-<div class="intro-wrapper">
-  <div class="intro">
-    <span>You can cum.</span>
-    <span>You can piss.</span>
-    <span>You can shit.</span>
-    <span>You can ZYN.</span>
+<!-- Cylinder Section -->
+<section class="cylinder-section">
+  <div class="stage">
+    <div class="tube">
+      <div class="tube__inner">
+        <h1 class="line">Rotation</h1>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- Cards Section -->
-<div class="cards-container">
-  <div class="card">
-    <div class="card-inner">
-      <div class="card-front">ZYN</div>
-      <div class="card-back">VOMA</div>
+<section class="cards-section">
+  <div class="cards-container">
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">Design</div>
+        <div class="card-back">Create</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">Develop</div>
+        <div class="card-back">Build</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">Test</div>
+        <div class="card-back">Ship</div>
+      </div>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-inner">
-      <div class="card-front">ZYN</div>
-      <div class="card-back">DIAREE</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-inner">
-      <div class="card-front">ZYN</div>
-      <div class="card-back">AMETELI</div>
-    </div>
-  </div>
-</div>
-
-<!-- Extra Content -->
-<div class="after-cards">
-  <p>Here is the content after the cards. Keep scrolling to see more.</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-</div>
+</section>
 
 <script src="script.js"></script>
 </body>

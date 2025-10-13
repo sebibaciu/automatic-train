@@ -1,76 +1,88 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const heroWord = document.querySelector(".hero-word");
-const navbar = document.querySelector(".navbar");
-const logo = navbar.querySelector(".logo");
+window.addEventListener('DOMContentLoaded', () => {
+  const stage = document.querySelector('.stage');
+  const tubeInner = document.querySelector(".tube__inner");
+  const originalLine = tubeInner.querySelector(".line");
+  const navbar = document.querySelector('.navbar');
+  const logo = document.querySelector('.logo');
 
-// Sync navbar logo text
-logo.textContent = heroWord.textContent;
+  const numLines = 10;
+  const angle = 360 / numLines;
+  let radius = 0;
 
-// Pin the hero wrapper so word stays in place initially
-ScrollTrigger.create({
-  trigger: ".hero-wrapper",
-  start: "top top",
-  end: "+=100%",
-  pin: true,
-  pinSpacing: false
-});
+  // --- Setup Cylinder ---
+  function setupCylinder() {
+    const fontSizePx = window.innerWidth * 0.1;
+    radius = (fontSizePx/2)/Math.sin((Math.PI/180)*(angle/2));
 
-// Animate hero word to shrink and move into navbar
-gsap.to(heroWord, {
-  scrollTrigger: {
-    trigger: ".hero-wrapper",
-    start: "top top",
-    end: "bottom top",
-    scrub: true
-  },
-  scale: 0.15,              // shrink
-  yPercent: -250,           // move to top
-  xPercent: -50,            // slightly move left
-  letterSpacing: "2px",
-  transformOrigin: "center center",
-  ease: "power1.inOut"
-});
+    tubeInner.innerHTML = '';
+    for(let i=0;i<numLines;i++){
+      const clone = originalLine.cloneNode(true);
+      clone.style.position = 'absolute';
+      clone.style.top = '50%';
+      clone.style.left = '50%';
+      clone.style.transformOrigin = `50% 50% -${radius}px`;
+      clone.style.transform = `rotateX(${-angle*i}deg) translateZ(${radius}px) translate(-50%, -50%)`;
+      tubeInner.appendChild(clone);
+    }
+  }
 
-// Fade in navbar only after word reaches the top
-ScrollTrigger.create({
-  trigger: ".hero-wrapper",
-  start: "top top+=50%",
-  onEnter: () => navbar.classList.add("visible"),
-  onLeaveBack: () => navbar.classList.remove("visible")
-});
+  setupCylinder();
+  window.addEventListener('resize', setupCylinder);
 
+  function updateProps(targets){
+    targets.forEach(target => {
+      let deg = gsap.getProperty(target, "rotateX");
+      let conv = Math.abs(Math.cos(deg*(Math.PI/180))/2 + 0.5);
+      gsap.set(target, {
+        opacity: conv+0.1,
+        fontWeight: 400 + 300*conv
+      });
+    });
+  }
 
-// --- Flip Cards ---
-const cards = gsap.utils.toArray('.card-inner');
-
-cards.forEach(card => {
-  const front = card.querySelector('.card-front');
-  const back = card.querySelector('.card-back');
-
-  // Create a timeline for the card tied to scroll
-  const tl = gsap.timeline({
+  // --- Timeline: rotation + shrink ---
+  const cylinderTimeline = gsap.timeline({
     scrollTrigger: {
-      trigger: card.parentElement,
-      start: "top 80%",
-      end: "top 30%",
-      scrub: 0.3
+      trigger: '.cylinder-section',
+      start: "top top",
+      end: "bottom top",
+      scrub: 1,
+      pin: true,
+      onUpdate: self => {
+        // Show navbar only when rotation almost done
+        if(self.progress > 0.85) navbar.classList.add('visible');
+      }
     }
   });
 
-  // Hinge-style flip with mid-flip rotation
-  tl.to(card, { rotationX: 12, scale: 1.05, ease: "power1.inOut" })      // slight hinge
-    .to(card, { rotationY: 90, ease: "power2.inOut" })                   // mid-flip
-    .to(card, { rotationY: 180, rotationX: 0, ease: "back.out(0.6)" });  // complete flip
+  cylinderTimeline.to('.line', { rotateX: "+=1080", ease: "power2.inOut", onUpdate: function(){ updateProps(this.targets()); } })
+                  .to('.tube__inner', { scale: 0.25, y: -window.innerHeight/2 + 30, ease: "power2.inOut" }, "<");
 
-  // Shadow + brightness animation
-  tl.to([front, back], { boxShadow: "0 20px 60px rgba(0,0,0,0.6)", filter: "brightness(0.7)", ease: "power1.inOut" }, 0);
+  // --- Cards ---
+  const cards = gsap.utils.toArray('.card-inner');
 
-  // Hover tilt (single listener per card)
-  card.addEventListener('mouseenter', () => {
-    gsap.to(card, { rotationY: card._gsap?.rotationY || 0 + 5, rotationX: 3, scale: 1.02, duration: 0.3, ease: "power1.out" });
-  });
-  card.addEventListener('mouseleave', () => {
-    gsap.to(card, { rotationY: card._gsap?.rotationY || 0, rotationX: 0, scale: 1, duration: 0.3, ease: "power1.out" });
+  cards.forEach(card => {
+    const front = card.querySelector('.card-front');
+    const back = card.querySelector('.card-back');
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: card.parentElement,
+        start: "top 85%",
+        end: "top 30%",
+        scrub: 0.4
+      }
+    })
+    .to(card, { rotationY: 180, scale: 1.05, ease: "power1.inOut" })
+    .to([front, back], { boxShadow: "0 20px 60px rgba(0,0,0,0.6)", filter: "brightness(0.7)", ease: "power1.inOut" }, 0);
+
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, { rotationY: card._gsap?.rotationY + 5 || 5, rotationX: 3, scale: 1.02, duration: 0.3, ease: "power1.out" });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { rotationY: card._gsap?.rotationY || 0, rotationX: 0, scale: 1, duration: 0.3, ease: "power1.out" });
+    });
   });
 });
