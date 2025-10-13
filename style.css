@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background: #0d0d0d;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background: rgba(13,13,13,0.9);
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.navbar.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.navbar .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-right: auto;
+}
+
+/* Hero Word */
+.hero-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-word {
+  font-size: 15vw;
+  line-height: 1;
+  letter-spacing: -2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  color: white;
+  z-index: 10;
+}
+
+
+/* --- Intro Section --- */
+.intro-wrapper {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: clamp(2rem, 6vw, 5rem);
+    line-height: 1.2;
+}
+
+.intro span {
+    display: block;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* --- Cards Section --- */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 200px;
+    padding: 100px 0 300px;
+}
+
+.card {
+    width: clamp(200px, 30vw, 320px);
+    height: clamp(300px, 45vw, 440px);
+    perspective: 1200px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    transition: filter 0.3s ease;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.card-back {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    transform: rotateY(180deg);
+}
+
+/* --- Extra Content After Cards --- */
+.after-cards {
+    padding: 200px 20px;
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: #ccc;
+}

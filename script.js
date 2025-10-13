@@ -1,43 +1,66 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero fade-in on load
-gsap.from(".hero-content", {
-    opacity: 0,
-    y: 50,
-    duration: 1,
-    ease: "power2.out"
-});
+const heroWord = document.querySelector(".hero-word");
+const navbar = document.querySelector(".navbar");
+const logo = navbar.querySelector(".logo");
 
-// Projects: Stagger animation on scroll
-gsap.from(".project-card", {
-    scrollTrigger: {
-        trigger: "#projects",
-        start: "top 80%",
-        toggleActions: "play none none reverse"
-    },
-    opacity: 0,
-    y: 100,
-    duration: 0.8,
-    stagger: 0.2, // Animate cards one by one
-    ease: "back.out(1.7)"
-});
+// Sync navbar logo text
+logo.textContent = heroWord.textContent;
 
-// Parallax for about section
-gsap.to("#about", {
-    scrollTrigger: {
-        trigger: "#about",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true // Smooth scroll-linked
-    },
-    yPercent: -50 // Parallax shift
-});
-
-// Pin hero content briefly
+// Pin the hero wrapper so word stays in place initially
 ScrollTrigger.create({
-    trigger: "#hero",
+  trigger: ".hero-wrapper",
+  start: "top top",
+  end: "+=100%",
+  pin: true,
+  pinSpacing: false
+});
+
+// Animate hero word to shrink and move into navbar
+gsap.to(heroWord, {
+  scrollTrigger: {
+    trigger: ".hero-wrapper",
     start: "top top",
     end: "bottom top",
-    pin: ".hero-content",
-    pinSpacing: false
+    scrub: true
+  },
+  scale: 0.15,              // shrink
+  yPercent: -250,           // move to top
+  xPercent: -50,            // slightly move left
+  letterSpacing: "2px",
+  transformOrigin: "center center",
+  ease: "power1.inOut"
+});
+
+// Fade in navbar only after word reaches the top
+ScrollTrigger.create({
+  trigger: ".hero-wrapper",
+  start: "top top+=50%",
+  onEnter: () => navbar.classList.add("visible"),
+  onLeaveBack: () => navbar.classList.remove("visible")
+});
+
+
+// --- Flip Cards ---
+const cards = gsap.utils.toArray('.card-inner');
+cards.forEach((card)=>{
+  gsap.timeline({
+    scrollTrigger:{
+      trigger: card.parentElement,
+      start: "top 80%",
+      end: "top 30%",
+      toggleActions: "play reverse play reverse"
+    }
+  })
+  .fromTo(card,
+    {rotationY:0},
+    {rotationY:180, duration:1, ease:"power2.inOut"}
+  )
+  .to(card.querySelectorAll('.card-front, .card-back'), {
+    filter: "brightness(0.6)",
+    duration:0.3,
+    yoyo:true,
+    repeat:1,
+    ease:"power1.inOut"
+  }, 0.3);
 });
