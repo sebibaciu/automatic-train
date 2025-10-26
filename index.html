@@ -1,101 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Cards + Hero Word</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rainbow Cards & Companies</title>
 
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+<style>
+/* Rainbow + Black background with more randomness */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(270deg, black, red, black, orange, black, yellow, black, green, black, blue, black, indigo, black, violet, black);
+  background-size: 2000% 2000%;
+  animation: rainbow 30s ease infinite;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  color: white;
+  text-align: center;
+}
+
+@keyframes rainbow {
+  0% {background-position:0% 50%;}
+  25% {background-position:50% 50%;}
+  50% {background-position:100% 50%;}
+  75% {background-position:50% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+/* Logo */
+.logo-section {
+  padding: 200px 20px 400px; /* more top and bottom spacing */
+}
+
+.logo-section img {
+  max-width: 700px;
+  width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Cards */
+.cards-section {
+  padding: 50px 20px 150px;
+  display: flex;
+  justify-content: center;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 150px;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  max-width: 1400px;
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 150px;
+  }
+}
+
+.card {
+  width: clamp(300px, 40vw, 500px);
+  height: clamp(420px, 60vw, 650px);
+  perspective: 1200px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  backface-visibility: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.card-front {
+  background-size: cover;
+  background-position: center;
+  filter: brightness(1);
+}
+
+.card-back {
+  background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+  transform: rotateY(180deg);
+}
+
+/* Companies Section */
+.companies-section {
+  padding: 80px 0 150px;
+  background: rgba(0,0,0,0.7);
+  overflow: hidden;
+  position: relative;
+}
+
+.companies-section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.companies-slider {
+  display: flex;
+  width: max-content;
+  animation: scrollLeft 20s linear infinite;
+}
+
+.companies-slider img {
+  height: 80px;
+  margin: 0 40px;
+  object-fit: contain;
+  filter: brightness(1.2);
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .companies-slider img {
+    height: 60px;
+    margin: 0 20px;
+  }
+}
+
+/* Footer */
+footer {
+  padding: 60px 20px;
+  background: rgba(0,0,0,0.9);
+  color: #fff;
+  text-align: center;
+  font-size: 1rem;
+}
+
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+  margin: 0 5px;
+}
+</style>
+</head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="logo">Cereale</div>
-  </nav>
+<!-- Logo -->
+<div class="logo-section">
+  <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="Logo">
+</div>
 
-  <!-- HERO WORD -->
-  <div class="stage">
-    <div class="tube">
-      <div class="tube__inner">
-        <h1 class="line">SE INVARTE</h1>
-      </div>
-    </div>
-  </div>
-
-  <!-- SPACE BEFORE CARDS -->
-  <div style="height:50vh"></div>
-
-  <!-- CARDS SECTION -->
+<!-- Cards -->
+<div class="cards-section">
   <div class="cards-container">
     <div class="card">
       <div class="card-inner">
-        <div class="card-front">GAY</div>
-        <div class="card-back">BUZI</div>
+        <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')"></div>
+        <div class="card-back">Card 1</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-inner">
-        <div class="card-front">GAY</div>
-        <div class="card-back">BUZI</div>
+        <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')"></div>
+        <div class="card-back">Card 2</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-inner">
-        <div class="card-front">GAY</div>
-        <div class="card-back">BUZI</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">GAY</div>
-        <div class="card-back">BUZI</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">GAY</div>
-        <div class="card-back">BUZI</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">GAY</div>
-        <div class="card-back">BUZI</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">GAY</div>
-        <div class="card-back">BUZI</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">GAY</div>
-        <div class="card-back">BUZI</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">GAY</div>
-        <div class="card-back">BUZI</div>
+        <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')"></div>
+        <div class="card-back">Card 3</div>
       </div>
     </div>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- Companies Section -->
+<div class="companies-section">
+  <h2>Companies We Work With</h2>
+  <div class="companies-slider" id="companies-slider">
+    <!-- Original set -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Company 1">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/KIA_logo3.svg/2560px-KIA_logo3.svg.png" alt="Company 2">
+    <!-- Duplicate set for seamless scroll -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Company 1">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/KIA_logo3.svg/2560px-KIA_logo3.svg.png" alt="Company 2">
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>Contact us: <a href="mailto:contact@example.com">contact@example.com</a> | Phone: +1 234 567 890</p>
+  <p>&copy; 2025 Your Company. All rights reserved.</p>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+function animateCards() {
+  const cards = gsap.utils.toArray('.card-inner');
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    const front = card.querySelector('.card-front');
+    const back = card.querySelector('.card-back');
+    const wrapper = card.parentElement;
+
+    gsap.set(wrapper, { perspective: 1600 });
+    gsap.set(card, { transformStyle: "preserve-3d" });
+    gsap.set(back, { rotationY: 180 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: wrapper,
+        start: "top 95%",
+        end: "top -10%",
+        scrub: 1.3,
+        toggleActions: "play reverse play reverse",
+      },
+    });
+
+    tl.fromTo(card,
+      { rotationY: -100, scale: 1, z: 0 },
+      { rotationY: 80, scale: 1.1, z: 100, duration: 1.6, ease: "power2.inOut" }
+    );
+
+    tl.to(card, { rotationY: 95, duration: 0.4, ease: "none" });
+    tl.to(card, { rotationY: 185, scale: 1.2, z: 160, duration: 1.6, ease: "power2.inOut" });
+    tl.to(card, { rotationY: 185, scale: 1.25, z: 200, duration: 0.6, ease: "none" });
+
+    tl.to(front, { filter: "brightness(0.5)", duration: 0.4 }, 0.1);
+    tl.to(back, { filter: "brightness(1.15)", duration: 0.4 }, 0.5);
+  });
+}
+
+function waitForCards(retries = 50) {
+  const cards = document.querySelectorAll('.card-inner');
+  if (cards.length) {
+    animateCards();
+  } else if (retries > 0) {
+    setTimeout(() => waitForCards(retries - 1), 100);
+  }
+}
+
+waitForCards();
+</script>
+
 </body>
-
 </html>
