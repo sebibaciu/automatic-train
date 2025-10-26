@@ -14,28 +14,19 @@
 @font-face {
   font-family: 'Aileron';
   src: url('fonts/Aileron-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
 }
 
+/* Smooth rainbow background */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Aileron', sans-serif;
-  background: linear-gradient(270deg, black, red, black, orange, black, yellow, black, green, black, blue, black, indigo, black, violet, black);
-  background-size: 2000% 2000%;
-  animation: rainbow 30s ease infinite;
+  background: radial-gradient(circle at center, black 0%, #ff0000 10%, #ff7f00 20%, #ffff00 30%, #00ff00 45%, #0000ff 60%, #4b0082 75%, #8f00ff 90%, black 100%);
+  background-size: 200% 200%;
   color: white;
   overflow-x: hidden;
   text-align: center;
-}
-
-@keyframes rainbow {
-  0% {background-position:0% 50%;}
-  25% {background-position:50% 50%;}
-  50% {background-position:100% 50%;}
-  75% {background-position:50% 50%;}
-  100% {background-position:0% 50%;}
+  transition: background 0.3s linear;
 }
 
 /* Logo */
@@ -59,15 +50,15 @@ body {
 }
 
 .middle-section h2 {
-  font-size: 3rem;
-  margin-bottom: 15px;
-  font-weight: 600;
+  font-size: 3.2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
   color: #fff;
   line-height: 1.2;
 }
 
 .middle-section p {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: #ffcc00;
   margin: 0;
   letter-spacing: 1px;
@@ -82,22 +73,20 @@ body {
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 300px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 350px; /* more space on desktop */
   justify-items: center;
   align-items: start;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1800px;
 }
 
 @media (max-width: 1200px) {
-  .cards-container { gap: 200px; }
+  .cards-container { gap: 250px; }
 }
-
 @media (max-width: 992px) {
-  .cards-container { gap: 120px; }
+  .cards-container { gap: 180px; }
 }
-
 @media (max-width: 768px) {
   .cards-container { grid-template-columns: 1fr; gap: 150px; }
 }
@@ -105,7 +94,7 @@ body {
 .card {
   width: clamp(300px, 40vw, 500px);
   height: clamp(420px, 60vw, 650px);
-  perspective: 1400px;
+  perspective: 1500px;
 }
 
 .card-inner {
@@ -113,6 +102,7 @@ body {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
+  transition: transform 1s;
 }
 
 .card-front, .card-back {
@@ -121,37 +111,35 @@ body {
   height: 100%;
   border-radius: 24px;
   backface-visibility: hidden;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  color: #fff;
+  padding: 30px;
   overflow: hidden;
+  color: #fff;
 }
 
 .card-front {
   background-size: cover;
   background-position: center;
-  filter: brightness(1);
 }
 
 .card-back {
   background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
   transform: rotateY(180deg);
-  font-size: 1rem;
   text-align: center;
 }
 
 .card-back h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 15px;
 }
 
 .card-back p {
-  font-size: 1rem;
-  line-height: 1.4;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
 /* Companies */
@@ -227,7 +215,7 @@ footer a {
         <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')"></div>
         <div class="card-back">
           <h1>Branding & Identity</h1>
-          <p>From zero to brand hero, we create logos, visual identity, brand story, and cohesive designs that make your brand unforgettable.</p>
+          <p>We create logos, visual identity, brand story, and cohesive designs that make your brand unforgettable.</p>
         </div>
       </div>
     </div>
@@ -245,7 +233,7 @@ footer a {
         <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')"></div>
         <div class="card-back">
           <h1>Brand Experience</h1>
-          <p>Ensuring every touchpoint reflects your brand, from documents, signage, and packaging to digital presence, for a consistent and memorable experience.</p>
+          <p>Ensuring every touchpoint reflects your brand, from documents, signage, packaging to digital presence for a consistent experience.</p>
         </div>
       </div>
     </div>
@@ -279,35 +267,48 @@ footer a {
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-function animateCards() {
-  const cards = gsap.utils.toArray('.card-inner');
-  cards.forEach(card => {
-    const front = card.querySelector('.card-front');
-    const back = card.querySelector('.card-back');
-    const wrapper = card.parentElement;
+// Gentle scroll rainbow shift + slow ambient shift
+let scrollOffset = 0;
+let ambientOffset = 0;
 
-    gsap.set(wrapper, { perspective: 1400 });
+window.addEventListener('scroll', () => {
+  scrollOffset = window.scrollY * 0.03; // very slow scroll shift
+  updateBackground();
+});
+
+function updateBackground() {
+  document.body.style.backgroundPosition = `${scrollOffset + ambientOffset}% 50%`;
+}
+
+// slow ambient animation
+function animateBackground() {
+  ambientOffset += 0.05; // very slow continuous shift
+  updateBackground();
+  requestAnimationFrame(animateBackground);
+}
+
+
+// Card flip
+function animateCards() {
+  const cards = document.querySelectorAll('.card-inner');
+  cards.forEach(card => {
     gsap.set(card, { transformStyle: "preserve-3d" });
+    const back = card.querySelector('.card-back');
     gsap.set(back, { rotationY: 180 });
 
     gsap.timeline({
       scrollTrigger: {
-        trigger: wrapper,
+        trigger: card,
         start: "top 90%",
         end: "top -10%",
         scrub: 1,
       }
     })
-    .to(card, { rotationY: 180, scale: 1.05, duration: 1.5 })
-    .to(front, { filter: "brightness(0.5)", duration: 0.5 }, 0)
-    .to(back, { filter: "brightness(1.1)", duration: 0.5 }, 0);
+    .to(card, { rotationY: 180, duration: 1.5 });
   });
 }
 
-// Animate on load
-window.addEventListener('load', () => {
-  animateCards();
-});
+window.addEventListener('load', animateCards);
 </script>
 
 </body>
