@@ -10,17 +10,23 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 
 <style>
-/* Rainbow + Black background with more randomness */
+/* Font */
+@font-face {
+  font-family: 'Aileron';
+  src: url('fonts/Aileron-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  font-family: 'Aileron', sans-serif;
   background: linear-gradient(270deg, black, red, black, orange, black, yellow, black, green, black, blue, black, indigo, black, violet, black);
   background-size: 2000% 2000%;
   animation: rainbow 30s ease infinite;
-  font-family: 'Roboto', sans-serif;
-  overflow-x: hidden;
   color: white;
+  overflow-x: hidden;
   text-align: center;
 }
 
@@ -34,7 +40,7 @@ body {
 
 /* Logo */
 .logo-section {
-  padding: 200px 20px 400px; /* more top and bottom spacing */
+  padding: 200px 20px 400px;
 }
 
 .logo-section img {
@@ -43,6 +49,28 @@ body {
   height: auto;
   display: block;
   margin: 0 auto;
+}
+
+/* Middle text */
+.middle-section {
+  padding: 120px 20px 80px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.middle-section h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.middle-section p {
+  font-size: 1.6rem;
+  color: #ffcc00;
+  margin: 0;
+  letter-spacing: 1px;
 }
 
 /* Cards */
@@ -54,25 +82,30 @@ body {
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 150px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 300px;
   justify-items: center;
   align-items: start;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
+}
+
+@media (max-width: 1200px) {
+  .cards-container { gap: 200px; }
+}
+
+@media (max-width: 992px) {
+  .cards-container { gap: 120px; }
 }
 
 @media (max-width: 768px) {
-  .cards-container {
-    grid-template-columns: 1fr;
-    gap: 150px;
-  }
+  .cards-container { grid-template-columns: 1fr; gap: 150px; }
 }
 
 .card {
   width: clamp(300px, 40vw, 500px);
   height: clamp(420px, 60vw, 650px);
-  perspective: 1200px;
+  perspective: 1400px;
 }
 
 .card-inner {
@@ -82,8 +115,7 @@ body {
   transform-style: preserve-3d;
 }
 
-.card-front,
-.card-back {
+.card-front, .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -91,10 +123,12 @@ body {
   backface-visibility: hidden;
   box-shadow: 0 25px 50px rgba(0,0,0,0.4);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  padding: 20px;
   color: #fff;
+  overflow: hidden;
 }
 
 .card-front {
@@ -106,9 +140,21 @@ body {
 .card-back {
   background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
   transform: rotateY(180deg);
+  font-size: 1rem;
+  text-align: center;
 }
 
-/* Companies Section */
+.card-back h1 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.card-back p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Companies */
 .companies-section {
   padding: 80px 0 150px;
   background: rgba(0,0,0,0.7);
@@ -120,7 +166,6 @@ body {
   text-align: center;
   margin-bottom: 40px;
   font-size: 2rem;
-  color: #fff;
 }
 
 .companies-slider {
@@ -142,10 +187,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .companies-slider img {
-    height: 60px;
-    margin: 0 20px;
-  }
+  .companies-slider img { height: 60px; margin: 0 20px; }
 }
 
 /* Footer */
@@ -171,46 +213,66 @@ footer a {
   <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="Logo">
 </div>
 
+<!-- Middle text -->
+<div class="middle-section">
+  <h2>Digital solutions for your business</h2>
+  <p>contact@arcdigital.ro</p>
+</div>
+
 <!-- Cards -->
 <div class="cards-section">
   <div class="cards-container">
     <div class="card">
       <div class="card-inner">
         <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')"></div>
-        <div class="card-back">Card 1</div>
+        <div class="card-back">
+          <h1>Branding & Identity</h1>
+          <p>From zero to brand hero, we create logos, visual identity, brand story, and cohesive designs that make your brand unforgettable.</p>
+        </div>
       </div>
     </div>
     <div class="card">
       <div class="card-inner">
         <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')"></div>
-        <div class="card-back">Card 2</div>
+        <div class="card-back">
+          <h1>Brand Strategy</h1>
+          <p>Naming, brand personality, messaging, and aligning your business strategy with your brand identity for maximum impact.</p>
+        </div>
       </div>
     </div>
     <div class="card">
       <div class="card-inner">
         <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')"></div>
-        <div class="card-back">Card 3</div>
+        <div class="card-back">
+          <h1>Brand Experience</h1>
+          <p>Ensuring every touchpoint reflects your brand, from documents, signage, and packaging to digital presence, for a consistent and memorable experience.</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Companies Section -->
+<!-- Companies -->
 <div class="companies-section">
   <h2>Companies We Work With</h2>
-  <div class="companies-slider" id="companies-slider">
-    <!-- Original set -->
+  <div class="companies-slider">
     <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Company 1">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/KIA_logo3.svg/2560px-KIA_logo3.svg.png" alt="Company 2">
-    <!-- Duplicate set for seamless scroll -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/MG_Motor_2021_logo.svg/1200px-MG_Motor_2021_logo.svg.png" alt="Company 3">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Peugeot_2021_Logo.svg/1095px-Peugeot_2021_Logo.svg.png" alt="Company 4">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Geely_logo.svg/2560px-Geely_logo.svg.png" alt="Company 5">
+    <!-- duplicate for seamless scroll -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Company 1">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/KIA_logo3.svg/2560px-KIA_logo3.svg.png" alt="Company 2">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/MG_Motor_2021_logo.svg/1200px-MG_Motor_2021_logo.svg.png" alt="Company 3">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Peugeot_2021_Logo.svg/1095px-Peugeot_2021_Logo.svg.png" alt="Company 4">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Geely_logo.svg/2560px-Geely_logo.svg.png" alt="Company 5">
   </div>
 </div>
 
 <!-- Footer -->
 <footer>
-  <p>Contact us: <a href="mailto:contact@example.com">contact@example.com</a> | Phone: +1 234 567 890</p>
+  <p>Contact us: <a href="mailto:contact@arcdigital.ro">contact@arcdigital.ro</a> | Phone: +1 234 567 890</p>
   <p>&copy; 2025 Your Company. All rights reserved.</p>
 </footer>
 
@@ -219,51 +281,33 @@ gsap.registerPlugin(ScrollTrigger);
 
 function animateCards() {
   const cards = gsap.utils.toArray('.card-inner');
-  if (!cards.length) return;
-
-  cards.forEach((card) => {
+  cards.forEach(card => {
     const front = card.querySelector('.card-front');
     const back = card.querySelector('.card-back');
     const wrapper = card.parentElement;
 
-    gsap.set(wrapper, { perspective: 1600 });
+    gsap.set(wrapper, { perspective: 1400 });
     gsap.set(card, { transformStyle: "preserve-3d" });
     gsap.set(back, { rotationY: 180 });
 
-    const tl = gsap.timeline({
+    gsap.timeline({
       scrollTrigger: {
         trigger: wrapper,
-        start: "top 95%",
+        start: "top 90%",
         end: "top -10%",
-        scrub: 1.3,
-        toggleActions: "play reverse play reverse",
-      },
-    });
-
-    tl.fromTo(card,
-      { rotationY: -100, scale: 1, z: 0 },
-      { rotationY: 80, scale: 1.1, z: 100, duration: 1.6, ease: "power2.inOut" }
-    );
-
-    tl.to(card, { rotationY: 95, duration: 0.4, ease: "none" });
-    tl.to(card, { rotationY: 185, scale: 1.2, z: 160, duration: 1.6, ease: "power2.inOut" });
-    tl.to(card, { rotationY: 185, scale: 1.25, z: 200, duration: 0.6, ease: "none" });
-
-    tl.to(front, { filter: "brightness(0.5)", duration: 0.4 }, 0.1);
-    tl.to(back, { filter: "brightness(1.15)", duration: 0.4 }, 0.5);
+        scrub: 1,
+      }
+    })
+    .to(card, { rotationY: 180, scale: 1.05, duration: 1.5 })
+    .to(front, { filter: "brightness(0.5)", duration: 0.5 }, 0)
+    .to(back, { filter: "brightness(1.1)", duration: 0.5 }, 0);
   });
 }
 
-function waitForCards(retries = 50) {
-  const cards = document.querySelectorAll('.card-inner');
-  if (cards.length) {
-    animateCards();
-  } else if (retries > 0) {
-    setTimeout(() => waitForCards(retries - 1), 100);
-  }
-}
-
-waitForCards();
+// Animate on load
+window.addEventListener('load', () => {
+  animateCards();
+});
 </script>
 
 </body>
