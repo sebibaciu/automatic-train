@@ -1,228 +1,628 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARC Digital Premium</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <style>
-    html {
-      scroll-behavior: smooth;
+    @font-face {
+      font-family: 'Aileron';
+      src: url('fonts/Aileron-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Aileron';
+      src: url('fonts/Aileron-Light.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Aileron';
+      src: url('fonts/Aileron-SemiBold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Aileron';
+      src: url('fonts/Aileron-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Aileron';
+      src: url('fonts/Aileron-Black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Floating orbs background layer */
-    .floating-orbs {
+    body {
+      font-family: 'Aileron', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+      font-weight: 400;
+    }
+
+    #webgl-background {
       position: fixed;
-      inset: 0;
-      z-index: -3;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .gradient-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.5) 50%,
+        rgba(0,0,0,0.8) 100%
+      );
       pointer-events: none;
+      z-index: -1;
+    }
+
+    .logo-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .logo-container {
+      max-width: 800px;
+      width: 80%;
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+    }
+
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Aileron', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #fff, #888);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .contact {
+      font-size: 1.25rem;
+      color: #888;
+      font-weight: 300;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+      padding: 4rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .card {
+      position: relative;
+      height: 500px;
+      perspective: 2000px;
+      opacity: 1;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-front {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-front::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.4)
+      );
+      opacity: 0.6;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background: rgba(15, 15, 15, 0.95);
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      color: white;
+      text-align: left;
+    }
+
+    .card h2 {
+      font-family: 'Aileron', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      color: #bbb;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .card-number {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      font-family: 'Aileron', sans-serif;
+      letter-spacing: 0.1em;
+    }
+
+    .companies {
+      padding: 8rem 2rem;
+      text-align: center;
       overflow: hidden;
     }
 
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.3;
+    .companies h2 {
+      font-family: 'Aileron', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 4rem;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: -0.01em;
     }
 
-    .orb:nth-child(1) {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(138, 43, 226, 0.4), transparent);
-      top: -250px;
-      left: -250px;
-      animation: float 22s ease-in-out infinite;
+    .logos-section {
+      width: 100%;
+      overflow: hidden;
+      padding: 2rem 0;
+      background: rgba(0, 0, 0, 0.2);
+      position: relative;
     }
 
-    .orb:nth-child(2) {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(220, 20, 60, 0.35), transparent);
-      bottom: -200px;
-      right: -200px;
-      animation: float 26s ease-in-out infinite reverse;
-    }
-
-    .orb:nth-child(3) {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(0, 191, 255, 0.25), transparent);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: float 30s ease-in-out infinite, pulse 7s ease-in-out infinite;
-    }
-
-    .orb:nth-child(4) {
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle, rgba(255, 105, 180, 0.3), transparent);
-      top: 20%;
-      right: 10%;
-      animation: float 24s ease-in-out infinite;
-    }
-
-    .orb:nth-child(5) {
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, rgba(123, 104, 238, 0.28), transparent);
-      bottom: 30%;
-      left: 15%;
-      animation: float 28s ease-in-out infinite reverse;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(80px, -60px) scale(1.2); }
-      50% { transform: translate(-40px, 70px) scale(0.85); }
-      75% { transform: translate(60px, -50px) scale(1.1); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.1); }
-    }
-
-    /* Advanced animated gradient background */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background: 
-        radial-gradient(ellipse at 15% 15%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
-        radial-gradient(ellipse at 85% 85%, rgba(220, 20, 60, 0.18) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(0, 191, 255, 0.15) 0%, transparent 60%),
-        #000;
-      animation: gradientShift 20s ease-in-out infinite, gradientMove 30s ease-in-out infinite;
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { filter: hue-rotate(0deg) brightness(1); }
-      33% { filter: hue-rotate(30deg) brightness(1.15); }
-      66% { filter: hue-rotate(-20deg) brightness(0.95); }
-    }
-
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 0%, 100% 100%, 50% 50%; background-size: 120% 120%, 120% 120%, 180% 180%; }
-      25% { background-position: 40% -10%, 70% 110%, 60% 40%; background-size: 150% 150%, 130% 130%, 200% 200%; }
-      50% { background-position: -10% 40%, 110% 70%, 40% 60%; background-size: 130% 130%, 150% 150%, 160% 160%; }
-      75% { background-position: 50% 0%, 60% 100%, 55% 45%; background-size: 160% 160%, 140% 140%, 190% 190%; }
-    }
-
-    /* Animated grain texture */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-      opacity: 0.4;
-      pointer-events: none;
-      animation: grainMove 8s steps(10) infinite;
-    }
-
-    @keyframes grainMove {
-      0%, 100% { transform: translate(0, 0); }
-      10% { transform: translate(-10%, -15%); }
-      20% { transform: translate(-20%, 10%); }
-      30% { transform: translate(15%, -30%); }
-      40% { transform: translate(-10%, 30%); }
-      50% { transform: translate(-30%, 15%); }
-      60% { transform: translate(25%, 0%); }
-      70% { transform: translate(20%, -20%); }
-      80% { transform: translate(-15%, 20%); }
-      90% { transform: translate(10%, 15%); }
-    }
-
-    .logo-section::after {
-      content: "";
-      position: absolute;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1px;
+      .logos-track {
+      display: flex;
+      animation: scroll 35s linear infinite;
+      width: max-content;
+      gap: 2rem;
+      padding: 2rem;
+    }    .logo-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
       height: 100px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-    }
-    
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0) rotateZ(0deg); }
-      50% { transform: translateY(-20px) rotateZ(2deg); }
-    }
-    
-    .logo-container img {
-        animation: logoFloat 8s ease-in-out infinite;
+      padding: 1rem;
+      transition: all 0.3s ease;
     }
 
-    @keyframes chromatic-aberration {
-      0%, 100% {
-        filter: drop-shadow(0 30px 80px rgba(138, 43, 226, 0.3)) 
-                drop-shadow(0.5px 0 0 #ff0000) 
-                drop-shadow(-0.5px 0 0 #00ffff);
-      }
-      25% {
-        filter: drop-shadow(0 30px 80px rgba(138, 43, 226, 0.3)) 
-                drop-shadow(0 0.5px 0 #ff0000) 
-                drop-shadow(0 -0.5px 0 #00ffff);
-      }
-      50% {
-        filter: drop-shadow(0 30px 80px rgba(138, 43, 226, 0.3)) 
-                drop-shadow(-0.5px 0 0 #ff0000) 
-                drop-shadow(0.5px 0 0 #00ffff);
-      }
-      75% {
-        filter: drop-shadow(0 30px 80px rgba(138, 43, 226, 0.3)) 
-                drop-shadow(0 -0.5px 0 #ff0000) 
-                drop-shadow(0 0.5px 0 #00ffff);
-      }
+    .logo-item img {
+      width: 140px;
+      height: 50px;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(0.8);
+      transition: all 0.3s ease;
+      opacity: 0.8;
     }
 
-    .logo-chromatic {
-      animation: chromatic-aberration 2s linear infinite;
-    }
-
-    .card.flipped .card-inner {
-      transform: rotateY(180deg);
-    }
-    
-    .companies-slider {
-      animation: scroll 40s linear infinite;
+    .logo-item:hover img {
+      filter: grayscale(0%) brightness(1);
+      transform: scale(1.1);
+      opacity: 1;
     }
 
     @keyframes scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+
+    .logos-section::before,
+    .logos-section::after {
+      content: "";
+      height: 100%;
+      width: 100px;
+      position: absolute;
+      z-index: 2;
+      top: 0;
+    }
+
+    .logos-section::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
+    }
+
+    .logos-section::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(0,0,0,0.8), transparent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer p {
+      color: #666;
+      margin: 1rem 0;
+    }
+
+    footer a {
+      color: #888;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
 </head>
-<body class="text-white font-['Inter'] overflow-x-hidden relative">
-  <div class="floating-orbs">
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-  </div>
-  <div id="root"></div>
-  <!-- Add Babel to compile TSX in the browser -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <!-- Tell Babel to compile and run our main script -->
-  <script type="text/babel" data-presets="react,typescript" data-type="module" src="./index.tsx"></script>
-<script type="module" src="/index.tsx"></script>
+<body>
+  <canvas id="webgl-background"></canvas>
+  <div class="gradient-overlay"></div>
+
+  <section class="logo-section">
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="ARC Digital Logo">
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h1>Digital solutions for your business</h1>
+    <p class="contact">contact@arcdigital.ro</p>
+  </section>
+
+  <section class="cards-grid">
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')">
+        </div>
+        <div class="card-back">
+          <div class="card-content">
+            <h2>Branding & Identity</h2>
+            <p>We create logos, visual identity, brand story, and cohesive designs that make your brand unforgettable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')">
+        </div>
+        <div class="card-back">
+          <div class="card-content">
+            <h2>Brand Strategy</h2>
+            <p>Naming, brand personality, messaging, and aligning your business strategy with your brand identity for maximum impact.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')">
+        </div>
+        <div class="card-back">
+          <div class="card-content">
+            <h2>Brand Experience</h2>
+            <p>Ensuring every touchpoint reflects your brand, from documents, signage, packaging to digital presence for a consistent experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="companies">
+    <h2>Companies We Work With</h2>
+    <div class="logos-section">
+      <div class="logos-track">
+        <!-- First set of logos -->
+        <div class="logo-item">
+          <img src="companies/KIA_logo3.svg.png" alt="KIA">
+        </div>
+        <div class="logo-item">
+          <img src="companies/MG_Motor_2021_logo.svg.png" alt="MG">
+        </div>
+        <div class="logo-item">
+          <img src="companies/Peugeot_2021_Logo.svg.png" alt="Peugeot">
+        </div>
+        <div class="logo-item">
+          <img src="companies/Geely_logo.svg.png" alt="Geely">
+        </div>
+        <div class="logo-item">
+          <img src="companies/Citroen_Logo_2022.png" alt="Citroen">
+        </div>
+        <div class="logo-item">
+          <img src="companies/KG_Mobility_brand_logo.svg.png" alt="KG Mobility">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Initialize infinite carousel
+    const initInfiniteCarousel = () => {
+      const track = document.querySelector('.logos-track');
+      const content = track.innerHTML;
+      track.innerHTML = content + content; // Duplicate content for seamless loop
+    };
+    
+    // Call after DOM is loaded
+    document.addEventListener('DOMContentLoaded', initInfiniteCarousel);
+  </script>
+
+  <footer>
+    <p>Contact us: <a href="mailto:contact@arcdigital.ro">contact@arcdigital.ro</a></p>
+    <p>Phone: +1 234 567 890</p>
+    <p>&copy; 2025 ARC Digital. All rights reserved.</p>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const scrollProgress = document.querySelector('.scroll-progress');
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (scrollTop / scrollHeight) * 100;
+      scrollProgress.style.width = progress + '%';
+    });
+
+    // Subtle logo animation
+    const logo = document.querySelector('.logo-container img');
+    gsap.to(logo, {
+      y: 20,
+      duration: 2,
+      ease: "power1.inOut",
+      yoyo: true,
+      repeat: -1
+    });
+
+    // Card animations
+    
+    // Flip animation on scroll
+    gsap.utils.toArray('.card').forEach((card, i) => {
+      // Initial fade in
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          end: 'top 60%',
+          toggleActions: 'play none none reverse'
+        },
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        delay: i * 0.15
+      });
+
+      // Card flip on scroll
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top center+=100',
+        end: 'bottom center-=100',
+        onEnter: () => card.querySelector('.card-inner').classList.add('flipped'),
+        onLeaveBack: () => card.querySelector('.card-inner').classList.remove('flipped')
+      });
+    });
+
+    // Section reveals
+    gsap.from('.middle-section h2', {
+      scrollTrigger: {
+        trigger: '.middle-section',
+        start: 'top 75%'
+      },
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power3.out'
+    });
+
+    gsap.from('.middle-section p', {
+      scrollTrigger: {
+        trigger: '.middle-section',
+        start: 'top 75%'
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      delay: 0.3,
+      ease: 'power3.out'
+    });
+
+    gsap.from('.companies-section h2', {
+      scrollTrigger: {
+        trigger: '.companies-section',
+        start: 'top 80%'
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out'
+    });
+
+    // Initialize cards
+    const cards = document.querySelectorAll('.card');
+
+    // Premium WebGL Background Animation
+    const initWebGLBackground = () => {
+      const canvas = document.getElementById('webgl-background');
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+      camera.position.z = 1000;
+
+      // Create particles with custom geometry
+      const particlesGeometry = new THREE.BufferGeometry();
+      const particlesCnt = 10000;
+      const posArray = new Float32Array(particlesCnt * 3);
+      const colorsArray = new Float32Array(particlesCnt * 3);
+      
+      for(let i = 0; i < particlesCnt * 3; i += 3) {
+        // Create a spherical distribution of particles
+        const radius = Math.random() * 800 + 200;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.random() * Math.PI;
+        
+        posArray[i] = radius * Math.sin(phi) * Math.cos(theta);
+        posArray[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
+        posArray[i + 2] = radius * Math.cos(phi);
+
+        // Create a color gradient
+        const distanceFromCenter = Math.sqrt(
+          posArray[i] * posArray[i] + 
+          posArray[i + 1] * posArray[i + 1] + 
+          posArray[i + 2] * posArray[i + 2]
+        );
+
+        const normalizedDistance = distanceFromCenter / 1000;
+        
+        // Set the RGB color (219, 74, 43)
+        colorsArray[i] = 219/255; // R
+        colorsArray[i + 1] = 74/255; // G
+        colorsArray[i + 2] = 43/255; // B
+      }
+      
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+
+      // Create particle material
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 2,
+        sizeAttenuation: true,
+        transparent: true,
+        opacity: 0.8,
+        vertexColors: true,
+        blending: THREE.AdditiveBlending,
+      });
+
+      // Create particle system
+      const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+      scene.add(particlesMesh);
+
+      // Mouse movement effect
+      let mouseX = 0;
+      let mouseY = 0;
+      const windowHalfX = window.innerWidth / 2;
+      const windowHalfY = window.innerHeight / 2;
+
+      document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX - windowHalfX) * 0.05;
+        mouseY = (event.clientY - windowHalfY) * 0.05;
+      });
+
+      // Animation
+      const clock = new THREE.Clock();
+
+      const animate = () => {
+        const elapsedTime = clock.getElapsedTime();
+        
+        // Gentle rotation of the entire particle system
+        particlesMesh.rotation.y = elapsedTime * 0.05;
+        particlesMesh.rotation.x = Math.sin(elapsedTime * 0.03) * 0.1;
+        
+        // Smooth camera movement based on mouse position
+        camera.position.x += (mouseX - camera.position.x) * 0.01;
+        camera.position.y += (-mouseY - camera.position.y) * 0.01;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      };
+
+      animate();
+
+      // Handle resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    };
+
+    // Initialize WebGL background
+    initWebGLBackground();
+  </script>
 </body>
 </html>
