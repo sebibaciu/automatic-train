@@ -487,23 +487,26 @@
   .cards-grid {
     gap: 2rem;
   }
-
-  .card {
-    height: 350px;
-    perspective: 1200px;
+.card {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    aspect-ratio: 3 / 4; /* Maintains original shape */
   }
 
+  .card-front,
   .card-back {
-    padding: 2rem 1.5rem;
+    padding: 1.6rem;
   }
 
+  /* Text stays readable but not crammed */
   .card h2 {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
   }
 
   .card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
   /* Make flip slower on phone */
