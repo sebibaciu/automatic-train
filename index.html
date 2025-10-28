@@ -1,61 +1,630 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARC Digital Premium 3D</title>
+  <title>ARC Digital Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&display=swap" rel="stylesheet">
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      cursor: none;
+    }
 
-  <!-- GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    /* Floating orbs background layer */
+    .floating-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .orb:nth-child(1) {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(138, 43, 226, 0.4), transparent);
+      top: -250px;
+      left: -250px;
+      animation: float 25s ease-in-out infinite;
+    }
+
+    .orb:nth-child(2) {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(220, 20, 60, 0.35), transparent);
+      bottom: -200px;
+      right: -200px;
+      animation: float 30s ease-in-out infinite reverse;
+    }
+
+    .orb:nth-child(3) {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 191, 255, 0.25), transparent);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: float 35s ease-in-out infinite, pulse 8s ease-in-out infinite;
+    }
+
+    .orb:nth-child(4) {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(255, 105, 180, 0.3), transparent);
+      top: 20%;
+      right: 10%;
+      animation: float 28s ease-in-out infinite;
+    }
+
+    .orb:nth-child(5) {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(123, 104, 238, 0.28), transparent);
+      bottom: 30%;
+      left: 15%;
+      animation: float 32s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(50px, -50px) scale(1.1);
+      }
+      50% {
+        transform: translate(-30px, 50px) scale(0.9);
+      }
+      75% {
+        transform: translate(40px, 30px) scale(1.05);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.25;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      50% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+    }
+
+    /* Advanced animated gradient background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: 
+        radial-gradient(ellipse at 15% 15%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 85%, rgba(220, 20, 60, 0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(0, 191, 255, 0.15) 0%, transparent 60%),
+        #000;
+      animation: gradientShift 20s ease-in-out infinite, gradientMove 30s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { 
+        filter: hue-rotate(0deg) brightness(1);
+      }
+      33% {
+        filter: hue-rotate(30deg) brightness(1.15);
+      }
+      66% { 
+        filter: hue-rotate(-20deg) brightness(0.95);
+      }
+    }
+
+    @keyframes gradientMove {
+      0%, 100% {
+        background-position: 0% 0%, 100% 100%, 50% 50%;
+        background-size: 100% 100%, 100% 100%, 150% 150%;
+      }
+      25% {
+        background-position: 20% 10%, 80% 90%, 60% 40%;
+        background-size: 120% 120%, 110% 110%, 160% 160%;
+      }
+      50% {
+        background-position: 10% 20%, 90% 80%, 40% 60%;
+        background-size: 110% 110%, 120% 120%, 140% 140%;
+      }
+      75% {
+        background-position: 30% 5%, 70% 95%, 55% 45%;
+        background-size: 130% 130%, 115% 115%, 155% 155%;
+      }
+    }
+
+    /* Animated grain texture */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+      animation: grainMove 8s steps(10) infinite;
+    }
+
+    @keyframes grainMove {
+      0%, 100% { transform: translate(0, 0); }
+      10% { transform: translate(-5%, -10%); }
+      20% { transform: translate(-15%, 5%); }
+      30% { transform: translate(7%, -25%); }
+      40% { transform: translate(-5%, 25%); }
+      50% { transform: translate(-25%, 10%); }
+      60% { transform: translate(20%, 0%); }
+      70% { transform: translate(15%, -15%); }
+      80% { transform: translate(-10%, 15%); }
+      90% { transform: translate(5%, 10%); }
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      pointer-events: none;
+      z-index: 10000;
+      mix-blend-mode: difference;
+      transition: transform 0.2s ease, opacity 0.3s ease;
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease;
+    }
+
+    /* Scroll progress */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(138, 43, 226, 0.8), rgba(220, 20, 60, 0.8));
+      z-index: 1000;
+      transition: width 0.1s ease;
+    }
+
+    /* Logo section */
+    .logo-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 40px 20px;
+    }
+
+    .logo-section::after {
+      content: "";
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 100px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    }
+
+    .logo-container {
+      position: relative;
+      max-width: 800px;
+      width: 80%;
+    }
+
+    .logo-container img {
+      width: 100%;
+      filter: drop-shadow(0 30px 80px rgba(138, 43, 226, 0.3));
+      animation: logoFloat 8s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0) rotateZ(0deg); }
+      50% { transform: translateY(-20px) rotateZ(2deg); }
+    }
+
+    /* Middle section */
+    .middle-section {
+      padding: 200px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .middle-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(138, 43, 226, 0.15), transparent);
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: -1;
+    }
+
+    .middle-section h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 700;
+      margin-bottom: 40px;
+      background: linear-gradient(135deg, #ffffff 0%, #888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .middle-section p {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: #999;
+      letter-spacing: 0.1em;
+      font-weight: 300;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Cards section */
+    .cards-section {
+      padding: 150px 20px 300px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .card {
+      position: relative;
+      height: 550px;
+      perspective: 2000px;
+      cursor: none;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      backface-visibility: hidden;
+      overflow: hidden;
+    }
+
+    .card-front {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-front::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+      z-index: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .card:hover .card-front::before {
+      opacity: 0.9;
+    }
+
+    .card-back {
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 50px;
+    }
+
+    .card-back::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(138, 43, 226, 0.1), transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-front-content {
+      position: absolute;
+      inset: 0;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      z-index: 2;
+    }
+
+    .card-number {
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.1);
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      line-height: 1;
+      font-family: 'Roboto Slab', serif;
+    }
+
+    .card h3 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .card-back h3 {
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #bbb;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    .card-glow {
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(220, 20, 60, 0.4));
+      border-radius: 30px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 0;
+      filter: blur(20px);
+    }
+
+    .card:hover .card-glow {
+      opacity: 0.6;
+    }
+
+    /* Companies section */
+    .companies-section {
+      padding: 200px 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .companies-section h2 {
+      text-align: center;
+      margin-bottom: 100px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 0%, #777 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .companies-slider {
+      display: flex;
+      gap: 100px;
+      align-items: center;
+      animation: scroll 40s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .companies-slider:hover {
+      animation-play-state: paused;
+    }
+
+    .companies-slider img {
+      height: 80px;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(0.5);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0.6;
+    }
+
+    .companies-slider img:hover {
+      filter: grayscale(0%) brightness(1);
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    /* Footer */
+    footer {
+      padding: 100px 20px;
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(30px);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      position: relative;
+    }
+
+    footer p {
+      margin: 15px 0;
+      color: #666;
+      font-size: 0.95rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    footer a::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #fff;
+      transition: width 0.3s ease;
+    }
+
+    footer a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .cards-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .card {
+        height: 450px;
+      }
+
+      .card-front-content,
+      .card-back {
+        padding: 35px;
+      }
+
+      .card h3 {
+        font-size: 1.8rem;
+      }
+
+      .companies-slider img {
+        height: 60px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="floating-orbs">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+  
+  <div class="scroll-progress"></div>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
 
-  <!-- Logo -->
   <div class="logo-section">
-    <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="Logo">
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="ARC Digital Logo">
+    </div>
   </div>
 
-  <!-- Middle Text -->
   <div class="middle-section">
     <h2>Digital solutions for your business</h2>
     <p>contact@arcdigital.ro</p>
   </div>
 
-  <!-- Cards Section -->
   <div class="cards-section">
     <div class="cards-container">
       <div class="card">
+        <div class="card-glow"></div>
         <div class="card-inner">
-          <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')"></div>
+          <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')">
+            <div class="card-front-content">
+              <div class="card-number">01</div>
+              <h3>Branding & Identity</h3>
+            </div>
+          </div>
           <div class="card-back">
-            <h1>Branding & Identity</h1>
+            <h3>Branding & Identity</h3>
             <p>We create logos, visual identity, brand story, and cohesive designs that make your brand unforgettable.</p>
           </div>
         </div>
       </div>
+
       <div class="card">
+        <div class="card-glow"></div>
         <div class="card-inner">
-          <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')"></div>
+          <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')">
+            <div class="card-front-content">
+              <div class="card-number">02</div>
+              <h3>Brand Strategy</h3>
+            </div>
+          </div>
           <div class="card-back">
-            <h1>Brand Strategy</h1>
+            <h3>Brand Strategy</h3>
             <p>Naming, brand personality, messaging, and aligning your business strategy with your brand identity for maximum impact.</p>
           </div>
         </div>
       </div>
+
       <div class="card">
+        <div class="card-glow"></div>
         <div class="card-inner">
-          <div class="card-front" style="background-image:url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')"></div>
+          <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')">
+            <div class="card-front-content">
+              <div class="card-number">03</div>
+              <h3>Brand Experience</h3>
+            </div>
+          </div>
           <div class="card-back">
-            <h1>Brand Experience</h1>
+            <h3>Brand Experience</h3>
             <p>Ensuring every touchpoint reflects your brand, from documents, signage, packaging to digital presence for a consistent experience.</p>
           </div>
         </div>
@@ -63,25 +632,203 @@
     </div>
   </div>
 
-  <!-- Companies Section -->
   <div class="companies-section">
     <h2>Companies We Work With</h2>
     <div class="companies-slider">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Company 1">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/KIA_logo3.svg/2560px-KIA_logo3.svg.png" alt="Company 2">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/MG_Motor_2021_logo.svg/1200px-MG_Motor_2021_logo.svg.png" alt="Company 3">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Peugeot_2021_Logo.svg/1095px-Peugeot_2021_Logo.svg.png" alt="Company 4">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Geely_logo.svg/2560px-Geely_logo.svg.png" alt="Company 5">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Suzuki">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/KIA_logo3.svg/2560px-KIA_logo3.svg.png" alt="KIA">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/MG_Motor_2021_logo.svg/1200px-MG_Motor_2021_logo.svg.png" alt="MG">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Peugeot_2021_Logo.svg/1095px-Peugeot_2021_Logo.svg.png" alt="Peugeot">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Geely_logo.svg/2560px-Geely_logo.svg.png" alt="Geely">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Suzuki_logo_2025_%28vertical%29.svg" alt="Suzuki">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/KIA_logo3.svg/2560px-KIA_logo3.svg.png" alt="KIA">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/MG_Motor_2021_logo.svg/1200px-MG_Motor_2021_logo.svg.png" alt="MG">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Peugeot_2021_Logo.svg/1095px-Peugeot_2021_Logo.svg.png" alt="Peugeot">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Geely_logo.svg/2560px-Geely_logo.svg.png" alt="Geely">
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <p>Contact us: <a href="mailto:contact@arcdigital.ro">contact@arcdigital.ro</a> | Phone: +1 234 567 890</p>
     <p>&copy; 2025 ARC Digital. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
-  <script src="script.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Parallax orbs on scroll
+    const orbs = document.querySelectorAll('.orb');
+    orbs.forEach((orb, i) => {
+      gsap.to(orb, {
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: true
+        },
+        y: (i + 1) * 150,
+        rotation: (i % 2 === 0 ? 360 : -360),
+        ease: 'none'
+      });
+    });
+
+    // Custom cursor
+    const cursor = document.querySelector('.cursor');
+    const follower = document.querySelector('.cursor-follower');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    let followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.3;
+      cursorY += (mouseY - cursorY) * 0.3;
+      followerX += (mouseX - followerX) * 0.1;
+      followerY += (mouseY - followerY) * 0.1;
+
+      cursor.style.transform = `translate(${cursorX - 5}px, ${cursorY - 5}px)`;
+      follower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Cursor interactions
+    const interactiveElements = document.querySelectorAll('a, .card');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = `translate(${cursorX - 5}px, ${cursorY - 5}px) scale(2)`;
+        follower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px) scale(1.5)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = `translate(${cursorX - 5}px, ${cursorY - 5}px) scale(1)`;
+        follower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px) scale(1)`;
+      });
+    });
+
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const scrollProgress = document.querySelector('.scroll-progress');
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (scrollTop / scrollHeight) * 100;
+      scrollProgress.style.width = progress + '%';
+    });
+
+    // Logo parallax
+    const logo = document.querySelector('.logo-container img');
+    let logoMouseX = 0, logoMouseY = 0;
+    let logoX = 0, logoY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      logoMouseX = (e.clientX / window.innerWidth - 0.5) * 40;
+      logoMouseY = (e.clientY / window.innerHeight - 0.5) * 40;
+    });
+
+    function animateLogo() {
+      logoX += (logoMouseX - logoX) * 0.08;
+      logoY += (logoMouseY - logoY) * 0.08;
+      logo.style.transform = `translate(${logoX}px, ${logoY}px) rotateZ(${logoX * 0.1}deg)`;
+      requestAnimationFrame(animateLogo);
+    }
+    animateLogo();
+
+    // Card animations
+    gsap.utils.toArray('.card').forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          end: 'top 60%',
+          toggleActions: 'play none none reverse'
+        },
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        delay: i * 0.15
+      });
+
+      // Flip cards on scroll
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 70%',
+        end: 'bottom 30%',
+        onEnter: () => {
+          card.classList.add('flipped');
+        },
+        onLeaveBack: () => {
+          card.classList.remove('flipped');
+        }
+      });
+    });
+
+    // Section reveals
+    gsap.from('.middle-section h2', {
+      scrollTrigger: {
+        trigger: '.middle-section',
+        start: 'top 75%'
+      },
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power3.out'
+    });
+
+    gsap.from('.middle-section p', {
+      scrollTrigger: {
+        trigger: '.middle-section',
+        start: 'top 75%'
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      delay: 0.3,
+      ease: 'power3.out'
+    });
+
+    gsap.from('.companies-section h2', {
+      scrollTrigger: {
+        trigger: '.companies-section',
+        start: 'top 80%'
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out'
+    });
+
+    // Card 3D tilt effect on card-inner
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const cardInner = card.querySelector('.card-inner');
+      
+      card.addEventListener('mousemove', (e) => {
+        if (card.classList.contains('flipped')) return;
+        
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+
+        cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (card.classList.contains('flipped')) {
+          cardInner.style.transform = 'rotateY(180deg)';
+        } else {
+          cardInner.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
