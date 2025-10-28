@@ -690,53 +690,52 @@
       repeat: -1
     });
 
-    // Pagination and sections
-    const sections = document.querySelectorAll('.section');
-    const dots = document.querySelectorAll('.pagination-dot');
-    
-    // Update pagination dots based on scroll position
-    const updatePagination = () => {
-      const currentScroll = window.pageYOffset + window.innerHeight / 2;
-      let currentSection = 0;
-      let minDistance = Infinity;
-      
-      sections.forEach((section, index) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionCenter = sectionTop + (sectionHeight / 2);
-        const distance = Math.abs(currentScroll - sectionCenter);
-        
-        if (distance < minDistance) {
-          minDistance = distance;
-          currentSection = index;
-        }
-      });
-      
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSection);
-      });
-    };
+// Include all sections, even the ones without .section
+const sections = [
+  document.querySelector('#home'),
+  document.querySelector('#intro'),
+  document.querySelector('#services'),
+  document.querySelector('.companies'), // Include companies
+  document.querySelector('#contact')
+];
 
-    // Initialize pagination
-    updatePagination();
+const dots = document.querySelectorAll('.pagination-dot');
 
-    // Smooth scroll to section when clicking pagination dots
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        sections[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
-    });
+const updatePagination = () => {
+  const scrollMiddle = window.scrollY + window.innerHeight / 2;
+  let currentIndex = 0;
 
-    // Update pagination on scroll with throttling
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-      if (!scrollTimeout) {
-        scrollTimeout = setTimeout(() => {
-          updatePagination();
-          scrollTimeout = null;
-        }, 50);
-      }
-    });
+  sections.forEach((section, index) => {
+    const rect = section.getBoundingClientRect();
+    const sectionTop = window.scrollY + rect.top;
+    const sectionBottom = sectionTop + rect.height;
+
+    // Check if the middle of viewport is inside this section
+    if (scrollMiddle >= sectionTop && scrollMiddle <= sectionBottom) {
+      currentIndex = index;
+    }
+  });
+
+  // If at the very bottom, select the last section
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    currentIndex = sections.length - 1;
+  }
+
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentIndex);
+  });
+};
+
+// Smooth scroll on dot click
+dots.forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+window.addEventListener('scroll', updatePagination);
+window.addEventListener('resize', updatePagination);
+updatePagination();
 
     // Card animations
     const cards = document.querySelectorAll('.card');
