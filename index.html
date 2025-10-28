@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,30 +15,35 @@
       font-weight: 400;
       font-style: normal;
     }
+
     @font-face {
       font-family: 'Aileron';
       src: url('fonts/Aileron-Light.otf') format('opentype');
       font-weight: 300;
       font-style: normal;
     }
+
     @font-face {
       font-family: 'Aileron';
       src: url('fonts/Aileron-SemiBold.otf') format('opentype');
       font-weight: 600;
       font-style: normal;
     }
+
     @font-face {
       font-family: 'Aileron';
       src: url('fonts/Aileron-Bold.otf') format('opentype');
       font-weight: 700;
       font-style: normal;
     }
+
     @font-face {
       font-family: 'Aileron';
       src: url('fonts/Aileron-Black.otf') format('opentype');
       font-weight: 900;
       font-style: normal;
     }
+
     * {
       margin: 0;
       padding: 0;
@@ -72,10 +78,9 @@
       width: 100%;
       height: 100%;
       background: radial-gradient(circle at center,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0.5) 50%,
-        rgba(0,0,0,0.8) 100%
-      );
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.5) 50%,
+          rgba(0, 0, 0, 0.8) 100%);
       pointer-events: none;
       z-index: -1;
     }
@@ -96,7 +101,7 @@
     .logo-container img {
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
     }
 
     .content-section {
@@ -174,8 +179,11 @@
 
     .card {
       position: relative;
-      height: 500px;
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 3 / 4;
       perspective: 2000px;
+      margin: 0 auto;
     }
 
     .card-inner {
@@ -214,9 +222,8 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg,
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.4)
-      );
+          rgba(0, 0, 0, 0.2),
+          rgba(0, 0, 0, 0.4));
       opacity: 0.6;
     }
 
@@ -276,11 +283,11 @@
     }
 
     .companies-title {
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-  font-weight: 600;
-}
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 600;
+    }
 
     .companies h2 {
       font-family: 'Aileron', sans-serif;
@@ -330,8 +337,13 @@
     }
 
     @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     .logos-section::before,
@@ -347,12 +359,12 @@
 
     .logos-section::before {
       left: 0;
-      background: linear-gradient(to right, rgba(0,0,0,1), transparent);
+      background: linear-gradient(to right, rgba(0, 0, 0, 1), transparent);
     }
 
     .logos-section::after {
       right: 0;
-      background: linear-gradient(to left, rgba(0,0,0,1), transparent);
+      background: linear-gradient(to left, rgba(0, 0, 0, 1), transparent);
     }
 
     .highlight-wrapper {
@@ -368,7 +380,7 @@
       font-weight: 900;
       font-style: italic;
     }
-    
+
     .asterisk {
       color: #DB4A2B;
       font-size: 1em;
@@ -461,96 +473,100 @@
       font-weight: 300;
     }
 
-/* MOBILE OPTIMIZATION */
-@media (max-width: 768px) {
+    /* MOBILE OPTIMIZATION */
+    @media (max-width: 768px) {
 
-  body {
-    line-height: 1.5;
-  }
+      body {
+        line-height: 1.5;
+      }
 
-  .section {
-    min-height: auto;
-    padding: 4rem 1.5rem;
-  }
+      .section {
+        min-height: auto;
+        padding: 4rem 1.5rem;
+      }
 
-  .logo-container {
-    width: 90%;
-    max-width: 350px;
-  }
+      .logo-container {
+        width: 90%;
+        max-width: 350px;
+      }
 
-  h1 {
-    font-size: 1.9rem;
-    white-space: normal;
-    line-height: 1.3;
-  }
+      h1 {
+        font-size: 1.9rem;
+        white-space: normal;
+        line-height: 1.3;
+      }
 
-  .cards-grid {
-    gap: 2rem;
-  }
-.card {
-    width: 100%;
-    max-width: 380px;
-    height: auto;
-    aspect-ratio: 3 / 4; /* Maintains original shape */
-  }
+      .cards-grid {
+        gap: 2rem;
+      }
 
-  .card-front,
-  .card-back {
-    padding: 1.6rem;
-  }
+      .card {
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        /* Maintains original shape */
+      }
 
-  /* Text stays readable but not crammed */
-  .card h2 {
-    font-size: 1.35rem;
-  }
+      .card-front,
+      .card-back {
+        padding: 1.6rem;
+      }
 
-  .card p {
-    font-size: 1rem;
-    line-height: 1.55;
-  }
+      /* Text stays readable but not crammed */
+      .card h2 {
+        font-size: 1.35rem;
+      }
 
-  /* Make flip slower on phone */
-  .card-inner {
-    transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+      .card p {
+        font-size: 1rem;
+        line-height: 1.55;
+      }
 
-  .companies-title {
-    margin-bottom: 2.5rem;
-  }
-  /* Logos */
-  .logo-item img {
-    width: 140px;
-    opacity: 0.8;
-  }
+      /* Make flip slower on phone */
+      .card-inner {
+        transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-  .logos-track {
-    gap: 3rem;
-    animation-duration: 28s;
-  }
+      .companies-title {
+        margin-bottom: 2.5rem;
+      }
 
-  /* Keep pagination dots bigger + easier to tap */
-  .pagination {
-    right: 1rem;
-  }
-  .pagination-dot {
-    width: 12px;
-    height: 12px;
-  }
+      /* Logos */
+      .logo-item img {
+        width: 140px;
+        opacity: 0.8;
+      }
 
-  /* Contact */
-  .contact-title {
-    font-size: 2.1rem;
-  }
+      .logos-track {
+        gap: 3rem;
+        animation-duration: 28s;
+      }
 
-  .email-link {
-    font-size: 1.4rem;
-    padding: 0.4em 0.7em;
-  }
+      /* Keep pagination dots bigger + easier to tap */
+      .pagination {
+        right: 1rem;
+      }
 
-}
+      .pagination-dot {
+        width: 12px;
+        height: 12px;
+      }
 
+      /* Contact */
+      .contact-title {
+        font-size: 2.1rem;
+      }
+
+      .email-link {
+        font-size: 1.4rem;
+        padding: 0.4em 0.7em;
+      }
+
+    }
   </style>
 </head>
+
 <body>
   <canvas id="webgl-background"></canvas>
   <div class="gradient-overlay"></div>
@@ -565,23 +581,28 @@
 
   <section class="section" id="home">
     <div class="logo-container">
-      <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="ARC Digital Logo">
+      <img
+        src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png"
+        alt="ARC Digital Logo">
     </div>
   </section>
 
   <section class="section" id="intro">
-    <h1>Crafting the ideal <span class="highlight-wrapper"><span class="asterisk">✽</span><span class="highlight">arc</span></span> for your brand</h1>
+    <h1>Crafting the ideal <span class="highlight-wrapper"><span class="asterisk">✽</span><span
+          class="highlight">arc</span></span> for your brand</h1>
   </section>
 
   <section class="section cards-grid" id="services">
     <div class="card">
       <div class="card-inner">
-        <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')">
+        <div class="card-front"
+          style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')">
         </div>
         <div class="card-back">
           <div class="card-content">
             <h2>Branding & Identity</h2>
-            <p>We create logos, visual identity, brand story, and cohesive designs that make your brand unforgettable.</p>
+            <p>We create logos, visual identity, brand story, and cohesive designs that make your brand unforgettable.
+            </p>
           </div>
         </div>
       </div>
@@ -589,12 +610,14 @@
 
     <div class="card">
       <div class="card-inner">
-        <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')">
+        <div class="card-front"
+          style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')">
         </div>
         <div class="card-back">
           <div class="card-content">
             <h2>Brand Strategy</h2>
-            <p>Naming, brand personality, messaging, and aligning your business strategy with your brand identity for maximum impact.</p>
+            <p>Naming, brand personality, messaging, and aligning your business strategy with your brand identity for
+              maximum impact.</p>
           </div>
         </div>
       </div>
@@ -602,22 +625,24 @@
 
     <div class="card">
       <div class="card-inner">
-        <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')">
+        <div class="card-front"
+          style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')">
         </div>
         <div class="card-back">
           <div class="card-content">
             <h2>Brand Experience</h2>
-            <p>Ensuring every touchpoint reflects your brand, from documents, signage, packaging to digital presence for a consistent experience.</p>
+            <p>Ensuring every touchpoint reflects your brand, from documents, signage, packaging to digital presence for
+              a consistent experience.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-<section class="companies">
-  <h2 class="companies-title">Companies we work with</h2>
-  <div class="logos-wrapper">
-    <div class="logos-track">
+  <section class="companies">
+    <h2 class="companies-title">Companies we work with</h2>
+    <div class="logos-wrapper">
+      <div class="logos-track">
         <!-- First set of logos -->
         <div class="logo-item">
           <img src="companies/KIA_logo3.svg.png" alt="KIA">
@@ -650,7 +675,8 @@
   <section class="section contact-section" id="contact">
     <div class="contact-content">
       <h2 class="contact-title">Let's create something amazing together</h2>
-      <p class="contact-subtitle">Ready to take your brand to the next level? We're just one message away from turning your vision into reality.</p>
+      <p class="contact-subtitle">Ready to take your brand to the next level? We're just one message away from turning
+        your vision into reality.</p>
       <div class="email-container">
         <a href="mailto:contact@arcdigital.ro" class="email-link">contact@arcdigital.ro</a>
       </div>
@@ -665,7 +691,7 @@
       const content = track.innerHTML;
       track.innerHTML = content + content; // Duplicate content for seamless loop
     };
-    
+
     // Call after DOM is loaded
     document.addEventListener('DOMContentLoaded', initInfiniteCarousel);
 
@@ -690,59 +716,59 @@
       repeat: -1
     });
 
-// Include all sections, even the ones without .section
-const sections = [
-  document.querySelector('#home'),
-  document.querySelector('#intro'),
-  document.querySelector('#services'),
-  document.querySelector('.companies'), // Include companies
-  document.querySelector('#contact')
-];
+    // Include all sections, even the ones without .section
+    const sections = [
+      document.querySelector('#home'),
+      document.querySelector('#intro'),
+      document.querySelector('#services'),
+      document.querySelector('.companies'), // Include companies
+      document.querySelector('#contact')
+    ];
 
-const dots = document.querySelectorAll('.pagination-dot');
+    const dots = document.querySelectorAll('.pagination-dot');
 
-const updatePagination = () => {
-  const scrollMiddle = window.scrollY + window.innerHeight / 2;
-  let currentIndex = 0;
+    const updatePagination = () => {
+      const scrollMiddle = window.scrollY + window.innerHeight / 2;
+      let currentIndex = 0;
 
-  sections.forEach((section, index) => {
-    const rect = section.getBoundingClientRect();
-    const sectionTop = window.scrollY + rect.top;
-    const sectionBottom = sectionTop + rect.height;
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = window.scrollY + rect.top;
+        const sectionBottom = sectionTop + rect.height;
 
-    // Check if the middle of viewport is inside this section
-    if (scrollMiddle >= sectionTop && scrollMiddle <= sectionBottom) {
-      currentIndex = index;
-    }
-  });
+        // Check if the middle of viewport is inside this section
+        if (scrollMiddle >= sectionTop && scrollMiddle <= sectionBottom) {
+          currentIndex = index;
+        }
+      });
 
-  // If at the very bottom, select the last section
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    currentIndex = sections.length - 1;
-  }
+      // If at the very bottom, select the last section
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        currentIndex = sections.length - 1;
+      }
 
-  dots.forEach((dot, index) => {
-    dot.classList.toggle('active', index === currentIndex);
-  });
-};
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    };
 
-// Smooth scroll on dot click
-dots.forEach((dot, index) => {
-  dot.addEventListener('click', () => {
-    sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
+    // Smooth scroll on dot click
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
 
-window.addEventListener('scroll', updatePagination);
-window.addEventListener('resize', updatePagination);
-updatePagination();
+    window.addEventListener('scroll', updatePagination);
+    window.addEventListener('resize', updatePagination);
+    updatePagination();
 
     // Card animations
     const cards = document.querySelectorAll('.card');
-    
+
     cards.forEach((card, i) => {
       const cardInner = card.querySelector('.card-inner');
-      
+
       // Initial fade in
       gsap.from(card, {
         scrollTrigger: {
@@ -842,21 +868,21 @@ updatePagination();
       const colorsArray = new Float32Array(particlesCnt * 3);
       const originalPositions = new Float32Array(particlesCnt * 3);
       const velocities = new Float32Array(particlesCnt * 3);
-      
-      for(let i = 0; i < particlesCnt * 3; i += 3) {
+
+      for (let i = 0; i < particlesCnt * 3; i += 3) {
         // Create a spherical distribution of particles
         const radius = Math.random() * 800 + 200;
         const theta = Math.random() * Math.PI * 2;
         const phi = Math.random() * Math.PI;
-        
+
         const x = radius * Math.sin(phi) * Math.cos(theta);
         const y = radius * Math.sin(phi) * Math.sin(theta);
         const z = radius * Math.cos(phi);
-        
+
         posArray[i] = x;
         posArray[i + 1] = y;
         posArray[i + 2] = z;
-        
+
         // Store original positions for animation
         originalPositions[i] = x;
         originalPositions[i + 1] = y;
@@ -868,11 +894,11 @@ updatePagination();
         velocities[i + 2] = 0;
 
         // Set the RGB color (219, 74, 43)
-        colorsArray[i] = 219/255; // R
-        colorsArray[i + 1] = 74/255; // G
-        colorsArray[i + 2] = 43/255; // B
+        colorsArray[i] = 219 / 255; // R
+        colorsArray[i + 1] = 74 / 255; // G
+        colorsArray[i + 2] = 43 / 255; // B
       }
-      
+
       particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
       particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
 
@@ -897,58 +923,58 @@ updatePagination();
       let prevMouseX = 0;
       let prevMouseY = 0;
       let mouseSpeed = 0;
-      
+
       document.addEventListener('mousemove', (event) => {
         // Update mouse position
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-        
+
         // Calculate mouse speed
         const dx = event.clientX - prevMouseX;
         const dy = event.clientY - prevMouseY;
         mouseSpeed = Math.sqrt(dx * dx + dy * dy) * 0.1;
-        
+
         // Update previous position
         prevMouseX = event.clientX;
         prevMouseY = event.clientY;
-        
+
         // Project mouse position to 3D space
         mouseSphere.set(
           mouse.x * 1000,
           mouse.y * 1000,
           0
         );
-        
+
         // Increase mouse strength based on speed
         mouseStrength = Math.min(mouseSpeed, 2);
       });
 
       // Animation
       const clock = new THREE.Clock();
-      
+
       const animate = () => {
         const elapsedTime = clock.getElapsedTime();
         const positions = particlesGeometry.attributes.position.array;
         const damping = 0.95; // Velocity damping factor
-        
+
         // Animate particles
-        for(let i = 0; i < positions.length; i += 3) {
+        for (let i = 0; i < positions.length; i += 3) {
           // Get current position
           const x = positions[i];
           const y = positions[i + 1];
           const z = positions[i + 2];
-          
+
           // Calculate distance to mouse
           const distanceToMouse = Math.sqrt(
             Math.pow(x - mouseSphere.x, 2) +
             Math.pow(y - mouseSphere.y, 2) +
             Math.pow(z - mouseSphere.z, 2)
           );
-          
-                    // Apply repulsion force
+
+          // Apply repulsion force
           if (distanceToMouse < 400) {
             const force = (1 - distanceToMouse / 400) * mouseStrength * 8;
-            velocities[i]     += (x - mouseSphere.x) / distanceToMouse * force;
+            velocities[i] += (x - mouseSphere.x) / distanceToMouse * force;
             velocities[i + 1] += (y - mouseSphere.y) / distanceToMouse * force;
             velocities[i + 2] += (z - mouseSphere.z) / distanceToMouse * force;
           }
@@ -958,17 +984,17 @@ updatePagination();
           const dy = originalPositions[i + 1] - y;
           const dz = originalPositions[i + 2] - z;
 
-          velocities[i]     += dx * 0.002;
+          velocities[i] += dx * 0.002;
           velocities[i + 1] += dy * 0.002;
           velocities[i + 2] += dz * 0.002;
 
           // Damping (smooth slowdown)
-          velocities[i]     *= 0.94;
+          velocities[i] *= 0.94;
           velocities[i + 1] *= 0.94;
           velocities[i + 2] *= 0.94;
 
           // Update positions
-          positions[i]     += velocities[i];
+          positions[i] += velocities[i];
           positions[i + 1] += velocities[i + 1];
           positions[i + 2] += velocities[i + 2];
         }
@@ -995,4 +1021,5 @@ updatePagination();
     initWebGLBackground();
   </script>
 </body>
+
 </html>
