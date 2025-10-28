@@ -275,6 +275,13 @@
       overflow: hidden;
     }
 
+    .companies-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 600;
+}
+
     .companies h2 {
       font-family: 'Aileron', sans-serif;
       font-size: clamp(2rem, 4vw, 3rem);
@@ -504,6 +511,9 @@
     transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .companies-title {
+    margin-bottom: 2.5rem;
+  }
   /* Logos */
   .logo-item img {
     width: 140px;
@@ -601,10 +611,10 @@
     </div>
   </section>
 
-  <section class="section companies" id="companies">
-    <h2>Companies We Work With</h2>
-    <div class="logos-section">
-      <div class="logos-track">
+<section class="companies">
+  <h2 class="companies-title">Companies we work for</h2>
+  <div class="logos-wrapper">
+    <div class="logos-track">
         <!-- First set of logos -->
         <div class="logo-item">
           <img src="companies/KIA_logo3.svg.png" alt="KIA">
