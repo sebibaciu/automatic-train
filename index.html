@@ -62,7 +62,7 @@
       z-index: 1000;
       display: flex;
       gap: 0.5rem;
-      background: rgba(15, 15, 15, 0.8);
+      background: rgba(15, 15, 15, 0.9);
       padding: 0.5rem;
       border-radius: 50px;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -100,236 +100,14 @@
     }
 
     .logo-container {
-      max-width: 800px;
-      width: 80%;
+      max-width: 700px;
+      width: 70%;
     }
 
     .logo-container img {
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
-    }
-
-    .content-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 8rem 2rem;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-      color: #fff;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      text-align: center;
-    }
-
-    .intro-content {
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .intro-subtitle {
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      color: rgba(255, 255, 255, 0.7);
-      font-weight: 300;
-      margin-bottom: 4rem;
-      letter-spacing: 0.01em;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 3rem;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 2rem 0;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
-      font-weight: 900;
-      color: #DB4A2B;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.6);
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    /* Portfolio Gallery */
-    .portfolio-section {
-      padding: 8rem 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .portfolio-title {
-      text-align: center;
-      font-size: clamp(2.5rem, 4vw, 3.5rem);
-      font-weight: 300;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-
-    .portfolio-subtitle {
-      text-align: center;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 5rem;
-      font-weight: 300;
-    }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-
-    .portfolio-item {
-      position: relative;
-      aspect-ratio: 16 / 10;
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.4s ease;
-    }
-
-    .portfolio-item:hover {
-      transform: translateY(-10px);
-    }
-
-    .portfolio-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .portfolio-item:hover img {
-      transform: scale(1.1);
-    }
-
-    .portfolio-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 2rem;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .portfolio-item:hover .portfolio-overlay {
-      opacity: 1;
-    }
-
-    .portfolio-item h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .portfolio-item p {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    /* Testimonials */
-    .testimonials-section {
-      padding: 8rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .testimonials-title {
-      text-align: center;
-      font-size: clamp(2.5rem, 4vw, 3.5rem);
-      font-weight: 300;
-      margin-bottom: 5rem;
-      color: #fff;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
-    }
-
-    .testimonial-card {
-      background: rgba(15, 15, 15, 0.6);
-      padding: 3rem 2.5rem;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(219, 74, 43, 0.3);
-    }
-
-    .testimonial-text {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 2rem;
-      font-style: italic;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .author-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #DB4A2B, #ff6b4a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-
-    .author-info h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .author-info p {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-      width: 100%;
+      filter: drop-shadow(0 20px 60px rgba(219, 74, 43, 0.3));
     }
 
     .section {
@@ -339,43 +117,88 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      padding: 4rem 2rem;
+      padding: 6rem 2rem;
     }
 
-    .section.cards-grid {
+    .intro-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      color: #fff;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .intro-subtitle {
+      font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 300;
+      margin-bottom: 5rem;
+      letter-spacing: 0.01em;
+      line-height: 1.6;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stats-grid {
       display: grid;
-      align-items: start;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 0;
     }
 
-    .pagination {
-      position: fixed;
-      right: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: clamp(2.8rem, 6vw, 4rem);
+      font-weight: 900;
+      color: #DB4A2B;
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .stat-label {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Services Cards */
+    .services-section {
+      padding: 8rem 2rem;
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 100;
+      align-items: center;
+      justify-content: center;
     }
 
-    .pagination-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .pagination-dot.active {
-      background: #DB4A2B;
-      transform: scale(1.5);
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .card {
       position: relative;
       width: 100%;
-      max-width: 360px;
+      max-width: 400px;
       aspect-ratio: 3 / 4;
       perspective: 2000px;
       margin: 0 auto;
@@ -387,7 +210,6 @@
       height: 100%;
       transform-style: preserve-3d;
       transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      will-change: transform;
     }
 
     .card-inner.flipped {
@@ -415,14 +237,14 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
-      opacity: 0.6;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+      opacity: 0.7;
     }
 
     .card-back {
       transform: rotateY(180deg);
       background: rgba(15, 15, 15, 0.95);
-      padding: 3rem 2rem;
+      padding: 2.5rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -431,65 +253,160 @@
     .card-content {
       position: relative;
       z-index: 2;
-      padding: 2rem;
       color: white;
       text-align: left;
     }
 
     .card h2 {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       margin-bottom: 1.5rem;
       color: #fff;
       font-weight: 700;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
 
     .card p {
-      color: #bbb;
-      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.7;
       font-size: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.6rem;
       margin-top: auto;
     }
 
     .tag {
       display: inline-block;
-      padding: 0.4rem 0.8rem;
+      padding: 0.5rem 1rem;
       background: rgba(219, 74, 43, 0.15);
-      border: 1px solid rgba(219, 74, 43, 0.3);
-      border-radius: 4px;
+      border: 1px solid rgba(219, 74, 43, 0.35);
+      border-radius: 6px;
       font-size: 0.85rem;
       color: #DB4A2B;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.02em;
     }
 
+    /* Portfolio Gallery */
+    .portfolio-section {
+      padding: 8rem 2rem;
+      max-width: 1500px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .portfolio-title {
+      text-align: center;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .portfolio-subtitle {
+      text-align: center;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 6rem;
+      font-weight: 300;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .portfolio-item {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.5s ease;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-8px);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.3) 60%, transparent);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-item h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .portfolio-item p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+    }
+
+    /* Companies Section */
     .companies {
       padding: 8rem 2rem;
       text-align: center;
       overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .companies-title {
       text-align: center;
-      margin-bottom: 1rem;
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      margin-bottom: 1.5rem;
+      font-size: clamp(2rem, 4.5vw, 3rem);
       font-weight: 600;
     }
 
     .companies-subtitle {
       text-align: center;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 4rem;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 5rem;
       font-weight: 300;
-      max-width: 600px;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -560,6 +477,7 @@
     .highlight-wrapper {
       display: inline-flex;
       align-items: center;
+      white-space: nowrap;
     }
 
     .highlight {
@@ -578,6 +496,7 @@
       margin-right: -0.1em;
     }
 
+    /* Contact Section */
     .contact-section {
       min-height: 100vh;
       display: flex;
@@ -593,25 +512,23 @@
       text-align: center;
       position: relative;
       z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .contact-title {
-      font-size: clamp(3rem, 8vw, 5rem);
+      font-size: clamp(2.5rem, 7vw, 5rem);
       font-weight: 300;
       color: #fff;
       margin-bottom: 3rem;
       line-height: 1.2;
-      opacity: 0.9;
     }
 
     .contact-subtitle {
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      color: rgba(255, 255, 255, 0.7);
+      font-size: clamp(1.15rem, 2.8vw, 1.6rem);
+      color: rgba(255, 255, 255, 0.75);
       margin-bottom: 4rem;
       font-weight: 300;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
       line-height: 1.6;
     }
 
@@ -622,7 +539,7 @@
     }
 
     .email-link {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       color: #DB4A2B;
       text-decoration: none;
       font-weight: 700;
@@ -630,6 +547,7 @@
       transition: all 0.4s ease;
       padding: 0.5em 1em;
       letter-spacing: 0.02em;
+      display: inline-block;
     }
 
     .email-link:hover {
@@ -663,31 +581,255 @@
       font-weight: 300;
     }
 
+    .pagination {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 100;
+    }
+
+    .pagination-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pagination-dot.active {
+      background: #DB4A2B;
+      transform: scale(1.4);
+    }
+
     .hidden {
       display: none;
     }
 
+    /* MOBILE OPTIMIZATION */
     @media (max-width: 768px) {
-      body { line-height: 1.5; }
-      .section { min-height: auto; padding: 4rem 1.5rem; }
-      .logo-container { width: 90%; max-width: 350px; }
-      h1 { font-size: 1.9rem; white-space: normal; line-height: 1.3; }
-      .intro-subtitle { margin-bottom: 2rem; }
-      .stats-grid { gap: 2rem; padding: 1.5rem 0; }
-      .stat-number { font-size: 2rem; }
-      .stat-label { font-size: 0.85rem; }
-      .cards-grid { gap: 2rem; }
-      .card { width: 100%; max-width: 380px; height: auto; aspect-ratio: 3 / 4; }
-      .card-front, .card-back { padding: 1.6rem; }
-      .card h2 { font-size: 1.35rem; }
-      .card p { font-size: 1rem; line-height: 1.55; }
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .language-switcher { top: 1rem; right: 1rem; }
-      .pagination { right: 1rem; }
-      .pagination-dot { width: 12px; height: 12px; }
-      .contact-title { font-size: 2.1rem; }
-      .email-link { font-size: 1.4rem; padding: 0.4em 0.7em; }
+      body {
+        line-height: 1.6;
+      }
+
+      .language-switcher {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.4rem;
+      }
+
+      .lang-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      .logo-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .logo-container {
+        width: 85%;
+        max-width: 300px;
+      }
+
+      .section {
+        min-height: auto;
+        padding: 5rem 1.5rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+        line-height: 1.25;
+        margin-bottom: 1.5rem;
+      }
+
+      .highlight-wrapper {
+        display: inline;
+      }
+
+      .intro-subtitle {
+        font-size: 1.05rem;
+        margin-bottom: 3rem;
+        line-height: 1.5;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 2rem 0;
+        max-width: 250px;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+      }
+
+      .services-section {
+        padding: 5rem 1.5rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 0 0.5rem;
+      }
+
+      .card {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .card-back {
+        padding: 2rem 1.5rem;
+      }
+
+      .card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+
+      .card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-tags {
+        gap: 0.5rem;
+      }
+
+      .tag {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+
+      .portfolio-section {
+        padding: 5rem 1.5rem;
+      }
+
+      .portfolio-title {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .portfolio-subtitle {
+        font-size: 1.05rem;
+        margin-bottom: 3rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .portfolio-item {
+        border-radius: 12px;
+      }
+
+      .portfolio-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4) 60%, transparent);
+      }
+
+      .portfolio-item h3 {
+        font-size: 1.25rem;
+      }
+
+      .portfolio-item p {
+        font-size: 0.9rem;
+      }
+
+      .companies {
+        padding: 5rem 1.5rem;
+      }
+
+      .companies-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .companies-subtitle {
+        font-size: 1.05rem;
+        margin-bottom: 3rem;
+      }
+
+      .logo-item img {
+        width: 140px;
+        opacity: 0.8;
+      }
+
+      .logos-track {
+        gap: 3rem;
+        animation-duration: 25s;
+      }
+
+      .logos-section::before,
+      .logos-section::after {
+        width: 60px;
+      }
+
+      .contact-section {
+        padding: 5rem 1.5rem;
+      }
+
+      .contact-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .contact-subtitle {
+        font-size: 1.05rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .email-link {
+        font-size: 1.25rem;
+        padding: 0.4em 0.6em;
+      }
+
+      .copyright {
+        font-size: 0.8rem;
+        padding: 0 1rem;
+      }
+
+      .pagination {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-container {
+        width: 90%;
+        max-width: 260px;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .intro-subtitle {
+        font-size: 1rem;
+      }
+
+      .card-back {
+        padding: 1.8rem 1.3rem;
+      }
+
+      .portfolio-item {
+        aspect-ratio: 4 / 3;
+      }
+
+      .email-link {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
@@ -708,12 +850,11 @@
     <div class="pagination-dot" data-section="3"></div>
     <div class="pagination-dot" data-section="4"></div>
     <div class="pagination-dot" data-section="5"></div>
-    <div class="pagination-dot" data-section="6"></div>
   </div>
 
   <!-- English Content -->
   <div id="content-en">
-    <section class="section" id="home">
+    <section class="logo-section" id="home">
       <div class="logo-container">
         <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="ARC Digital Logo">
       </div>
@@ -721,7 +862,7 @@
 
     <section class="section" id="intro">
       <div class="intro-content">
-        <h1 class="split">Crafting the ideal <span class="highlight-wrapper"><span class="asterisk">✽</span><span class="highlight">arc</span></span> for your brand</h1>
+        <h1>Crafting the ideal <span class="highlight-wrapper"><span class="asterisk">✽</span><span class="highlight">arc</span></span> for your brand</h1>
         <p class="intro-subtitle">Brand strategy & identity design for businesses that refuse to blend in</p>
         <div class="stats-grid">
           <div class="stat-item">
@@ -740,52 +881,54 @@
       </div>
     </section>
 
-    <section class="section cards-grid" id="services">
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')"></div>
-          <div class="card-back">
-            <div class="card-content">
-              <h2>Branding & Identity</h2>
-              <p>We create logos, visual identity systems, and cohesive brand designs that make your business unforgettable. From concept to final delivery, we ensure every element reflects your brand's essence.</p>
-              <div class="card-tags">
-                <span class="tag">Logo Design</span>
-                <span class="tag">Visual Identity</span>
-                <span class="tag">Brand Guidelines</span>
+    <section class="services-section" id="services">
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')"></div>
+            <div class="card-back">
+              <div class="card-content">
+                <h2>Branding & Identity</h2>
+                <p>We create logos, visual identity systems, and cohesive brand designs that make your business unforgettable. From concept to final delivery, we ensure every element reflects your brand's essence.</p>
+                <div class="card-tags">
+                  <span class="tag">Logo Design</span>
+                  <span class="tag">Visual Identity</span>
+                  <span class="tag">Brand Guidelines</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')"></div>
-          <div class="card-back">
-            <div class="card-content">
-              <h2>Brand Strategy</h2>
-              <p>Strategic positioning, naming, brand personality, and messaging frameworks that align your business objectives with your brand identity for maximum market impact.</p>
-              <div class="card-tags">
-                <span class="tag">Market Research</span>
-                <span class="tag">Positioning</span>
-                <span class="tag">Messaging</span>
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')"></div>
+            <div class="card-back">
+              <div class="card-content">
+                <h2>Brand Strategy</h2>
+                <p>Strategic positioning, naming, brand personality, and messaging frameworks that align your business objectives with your brand identity for maximum market impact.</p>
+                <div class="card-tags">
+                  <span class="tag">Market Research</span>
+                  <span class="tag">Positioning</span>
+                  <span class="tag">Messaging</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')"></div>
-          <div class="card-back">
-            <div class="card-content">
-              <h2>Brand Experience</h2>
-              <p>We ensure every customer touchpoint reflects your brand perfectly—from packaging and signage to digital presence and environmental design for a consistent, memorable experience.</p>
-              <div class="card-tags">
-                <span class="tag">Packaging</span>
-                <span class="tag">Digital</span>
-                <span class="tag">Signage</span>
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')"></div>
+            <div class="card-back">
+              <div class="card-content">
+                <h2>Brand Experience</h2>
+                <p>We ensure every customer touchpoint reflects your brand perfectly—from packaging and signage to digital presence and environmental design for a consistent, memorable experience.</p>
+                <div class="card-tags">
+                  <span class="tag">Packaging</span>
+                  <span class="tag">Digital</span>
+                  <span class="tag">Signage</span>
+                </div>
               </div>
             </div>
           </div>
@@ -821,42 +964,6 @@
       </div>
     </section>
 
-    <section class="testimonials-section">
-      <h2 class="testimonials-title">What Our Clients Say</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p class="testimonial-text">"ARC Digital transformed our brand completely. Their strategic approach and creative execution exceeded all expectations. Our market presence has never been stronger."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">M</div>
-            <div class="author-info">
-              <h4>Maria Ionescu</h4>
-              <p>Marketing Director, Premium Auto</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">"Working with ARC Digital was a game-changer. They didn't just design a logo—they crafted an entire brand ecosystem that resonates with our audience."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">A</div>
-            <div class="author-info">
-              <h4>Alexandru Popescu</h4>
-              <p>CEO, Tech Innovations</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">"The attention to detail and strategic thinking they brought to our project was phenomenal. Our new brand identity has opened doors we never thought possible."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">E</div>
-            <div class="author-info">
-              <h4>Elena Dumitrescu</h4>
-              <p>Founder, Luxury Retail Group</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="companies">
       <h2 class="companies-title">Trusted by Industry Leaders</h2>
       <p class="companies-subtitle">We've partnered with leading automotive brands to elevate their market presence</p>
@@ -874,7 +981,7 @@
       </div>
     </section>
 
-    <section class="section contact-section" id="contact">
+    <section class="contact-section" id="contact">
       <div class="contact-content">
         <h2 class="contact-title">Let's create something amazing together</h2>
         <p class="contact-subtitle">Ready to take your brand to the next level? We're just one message away from turning your vision into reality.</p>
@@ -888,7 +995,7 @@
 
   <!-- Romanian Content -->
   <div id="content-ro" class="hidden">
-    <section class="section" id="home-ro">
+    <section class="logo-section" id="home-ro">
       <div class="logo-container">
         <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="ARC Digital Logo">
       </div>
@@ -896,7 +1003,7 @@
 
     <section class="section" id="intro-ro">
       <div class="intro-content">
-        <h1 class="split">Creăm <span class="highlight-wrapper"><span class="asterisk">✽</span><span class="highlight">arcul</span></span> ideal pentru brandul tău</h1>
+        <h1>Creăm <span class="highlight-wrapper"><span class="asterisk">✽</span><span class="highlight">arcul</span></span> ideal pentru brandul tău</h1>
         <p class="intro-subtitle">Strategie de brand și design de identitate pentru companii care refuză să se confunde cu mulțimea</p>
         <div class="stats-grid">
           <div class="stat-item">
@@ -915,52 +1022,54 @@
       </div>
     </section>
 
-    <section class="section cards-grid" id="services-ro">
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')"></div>
-          <div class="card-back">
-            <div class="card-content">
-              <h2>Branding & Identitate</h2>
-              <p>Creăm logo-uri, sisteme de identitate vizuală și design-uri de brand coezive care fac afacerea ta de neuitat. De la concept până la livrarea finală, ne asigurăm că fiecare element reflectă esența brandului tău.</p>
-              <div class="card-tags">
-                <span class="tag">Design Logo</span>
-                <span class="tag">Identitate Vizuală</span>
-                <span class="tag">Ghid de Brand</span>
+    <section class="services-section" id="services-ro">
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/1.png')"></div>
+            <div class="card-back">
+              <div class="card-content">
+                <h2>Branding & Identitate</h2>
+                <p>Creăm logo-uri, sisteme de identitate vizuală și design-uri de brand coezive care fac afacerea ta de neuitat. De la concept până la livrarea finală, ne asigurăm că fiecare element reflectă esența brandului tău.</p>
+                <div class="card-tags">
+                  <span class="tag">Design Logo</span>
+                  <span class="tag">Identitate Vizuală</span>
+                  <span class="tag">Ghid de Brand</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')"></div>
-          <div class="card-back">
-            <div class="card-content">
-              <h2>Strategie de Brand</h2>
-              <p>Poziționare strategică, naming, personalitate de brand și framework-uri de mesagerie care aliniază obiectivele afacerii cu identitatea brandului pentru impact maxim pe piață.</p>
-              <div class="card-tags">
-                <span class="tag">Cercetare de Piață</span>
-                <span class="tag">Poziționare</span>
-                <span class="tag">Mesagerie</span>
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/2.png')"></div>
+            <div class="card-back">
+              <div class="card-content">
+                <h2>Strategie de Brand</h2>
+                <p>Poziționare strategică, naming, personalitate de brand și framework-uri de mesagerie care aliniază obiectivele afacerii cu identitatea brandului pentru impact maxim pe piață.</p>
+                <div class="card-tags">
+                  <span class="tag">Cercetare de Piață</span>
+                  <span class="tag">Poziționare</span>
+                  <span class="tag">Mesagerie</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')"></div>
-          <div class="card-back">
-            <div class="card-content">
-              <h2>Experiență de Brand</h2>
-              <p>Ne asigurăm că fiecare punct de contact cu clientul reflectă perfect brandul tău—de la ambalaje și semnalistică până la prezență digitală și design ambiental pentru o experiență consecventă și memorabilă.</p>
-              <div class="card-tags">
-                <span class="tag">Ambalaje</span>
-                <span class="tag">Digital</span>
-                <span class="tag">Semnalistică</span>
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front" style="background-image: url('https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/3.png')"></div>
+            <div class="card-back">
+              <div class="card-content">
+                <h2>Experiență de Brand</h2>
+                <p>Ne asigurăm că fiecare punct de contact cu clientul reflectă perfect brandul tău—de la ambalaje și semnalistică până la prezență digitală și design ambiental pentru o experiență consecventă și memorabilă.</p>
+                <div class="card-tags">
+                  <span class="tag">Ambalaje</span>
+                  <span class="tag">Digital</span>
+                  <span class="tag">Semnalistică</span>
+                </div>
               </div>
             </div>
           </div>
@@ -996,42 +1105,6 @@
       </div>
     </section>
 
-    <section class="testimonials-section">
-      <h2 class="testimonials-title">Ce Spun Clienții Noștri</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p class="testimonial-text">"ARC Digital ne-a transformat complet brandul. Abordarea lor strategică și execuția creativă au depășit toate așteptările. Prezența noastră pe piață nu a fost niciodată mai puternică."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">M</div>
-            <div class="author-info">
-              <h4>Maria Ionescu</h4>
-              <p>Director Marketing, Premium Auto</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">"Colaborarea cu ARC Digital a schimbat totul. Nu au creat doar un logo—au construit un întreg ecosistem de brand care rezonează cu publicul nostru."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">A</div>
-            <div class="author-info">
-              <h4>Alexandru Popescu</h4>
-              <p>CEO, Tech Innovations</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">"Atenția la detalii și gândirea strategică pe care au adus-o proiectului nostru a fost fenomenală. Noua noastră identitate de brand a deschis uși pe care nu le-am crezut niciodată posibile."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">E</div>
-            <div class="author-info">
-              <h4>Elena Dumitrescu</h4>
-              <p>Fondator, Luxury Retail Group</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="companies">
       <h2 class="companies-title">Încrederea Liderilor din Industrie</h2>
       <p class="companies-subtitle">Am colaborat cu branduri auto de top pentru a le ridica prezența pe piață</p>
@@ -1049,7 +1122,7 @@
       </div>
     </section>
 
-    <section class="section contact-section" id="contact-ro">
+    <section class="contact-section" id="contact-ro">
       <div class="contact-content">
         <h2 class="contact-title">Hai să creăm ceva extraordinar împreună</h2>
         <p class="contact-subtitle">Pregătit să-ți duci brandul la următorul nivel? Suntem la doar un mesaj distanță de a transforma viziunea ta în realitate.</p>
@@ -1084,11 +1157,11 @@
           document.documentElement.lang = 'ro';
         }
         
-        // Scroll to top when switching language
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        
-        // Reinitialize pagination
-        setTimeout(updatePagination, 100);
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+          updatePagination();
+        }, 100);
       });
     });
 
@@ -1106,21 +1179,23 @@
     gsap.registerPlugin(ScrollTrigger);
 
     // Logo animation
-    const logos = document.querySelectorAll('.logo-container img');
-    logos.forEach(logo => {
-      gsap.to(logo, {
-        y: 20,
-        duration: 2,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1
+    const animateLogos = () => {
+      const logos = document.querySelectorAll('.logo-container img');
+      logos.forEach(logo => {
+        gsap.to(logo, {
+          y: 20,
+          duration: 2,
+          ease: "power1.inOut",
+          yoyo: true,
+          repeat: -1
+        });
       });
-    });
+    };
 
     // Pagination
     const getAllSections = () => {
       const activeContent = document.querySelector('#content-en:not(.hidden), #content-ro:not(.hidden)');
-      return Array.from(activeContent.querySelectorAll('.section, .portfolio-section, .testimonials-section, .companies'));
+      return Array.from(activeContent.querySelectorAll('.logo-section, .section, .services-section, .portfolio-section, .companies, .contact-section'));
     };
 
     const dots = document.querySelectorAll('.pagination-dot');
@@ -1140,7 +1215,7 @@
         }
       });
 
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
         currentIndex = sections.length - 1;
       }
 
@@ -1160,7 +1235,6 @@
 
     window.addEventListener('scroll', updatePagination);
     window.addEventListener('resize', updatePagination);
-    updatePagination();
 
     // Cards animation
     const animateCards = () => {
@@ -1204,7 +1278,6 @@
           scrollTrigger: {
             trigger: item,
             start: 'top 85%',
-            end: 'top 60%',
             toggleActions: 'play none none reverse'
           },
           y: 80,
@@ -1216,39 +1289,52 @@
       });
     };
 
-    // Testimonials animation
-    const animateTestimonials = () => {
-      const testimonialCards = document.querySelectorAll('.testimonial-card');
-      
-      testimonialCards.forEach((card, i) => {
-        gsap.from(card, {
+    // Section animations
+    const animateSections = () => {
+      gsap.utils.toArray('.portfolio-title, .companies-title').forEach(title => {
+        gsap.from(title, {
           scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            end: 'top 60%',
+            trigger: title,
+            start: 'top 80%',
             toggleActions: 'play none none reverse'
           },
-          y: 60,
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out'
+        });
+      });
+
+      gsap.utils.toArray('.portfolio-subtitle, .companies-subtitle').forEach(subtitle => {
+        gsap.from(subtitle, {
+          scrollTrigger: {
+            trigger: subtitle,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          },
+          y: 30,
           opacity: 0,
           duration: 0.8,
           ease: 'power3.out',
-          delay: i * 0.15
+          delay: 0.2
         });
       });
     };
 
     // Initialize animations
     setTimeout(() => {
+      animateLogos();
       animateCards();
       animatePortfolio();
-      animateTestimonials();
+      animateSections();
+      updatePagination();
     }, 100);
 
     // WebGL Background
     const initWebGLBackground = () => {
       const canvas = document.getElementById('webgl-background');
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(window.innerWidth, window.innerHeight);
 
       const scene = new THREE.Scene();
@@ -1266,7 +1352,7 @@
       scene.add(mesh);
 
       const particlesGeometry = new THREE.BufferGeometry();
-      const particlesCnt = 10000;
+      const particlesCnt = window.innerWidth < 768 ? 5000 : 10000;
       const posArray = new Float32Array(particlesCnt * 3);
       const colorsArray = new Float32Array(particlesCnt * 3);
       const originalPositions = new Float32Array(particlesCnt * 3);
@@ -1302,7 +1388,7 @@
       particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
 
       const particlesMaterial = new THREE.PointsMaterial({
-        size: 2.5,
+        size: window.innerWidth < 768 ? 2 : 2.5,
         sizeAttenuation: true,
         transparent: true,
         opacity: 0.8,
@@ -1320,7 +1406,7 @@
       let prevMouseY = 0;
       let mouseSpeed = 0;
 
-      document.addEventListener('mousemove', (event) => {
+      const handleMouseMove = (event) => {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
@@ -1333,7 +1419,9 @@
 
         mouseSphere.set(mouse.x * 1000, mouse.y * 1000, 0);
         mouseStrength = Math.min(mouseSpeed, 2);
-      });
+      };
+
+      document.addEventListener('mousemove', handleMouseMove);
 
       const clock = new THREE.Clock();
 
