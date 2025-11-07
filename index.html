@@ -54,7 +54,6 @@
       z-index: -1;
     }
 
-    /* Language Switcher */
     .language-switcher {
       position: fixed;
       top: 2rem;
@@ -175,6 +174,368 @@
       font-weight: 400;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+    }
+
+    /* Process Timeline */
+    .process-section {
+      padding: 8rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .process-title {
+      text-align: center;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .process-subtitle {
+      text-align: center;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 6rem;
+      font-weight: 300;
+      max-width: 700px;
+    }
+
+    .process-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 3rem;
+      max-width: 1300px;
+      width: 100%;
+      position: relative;
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .process-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 2rem;
+      background: rgba(219, 74, 43, 0.1);
+      border: 2px solid rgba(219, 74, 43, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      transition: all 0.4s ease;
+    }
+
+    .process-step:hover .process-icon {
+      background: rgba(219, 74, 43, 0.2);
+      border-color: rgba(219, 74, 43, 0.5);
+      transform: scale(1.1);
+    }
+
+    .process-number {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 35px;
+      height: 35px;
+      background: #DB4A2B;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .process-step h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .process-step p {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    /* Industry Focus */
+    .industry-section {
+      padding: 8rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .industry-title {
+      text-align: center;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .industry-subtitle {
+      text-align: center;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 6rem;
+      font-weight: 300;
+      max-width: 700px;
+    }
+
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .industry-item {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: rgba(15, 15, 15, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .industry-item:hover {
+      background: rgba(219, 74, 43, 0.1);
+      border-color: rgba(219, 74, 43, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .industry-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .industry-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Quiz Section */
+    .quiz-section {
+      padding: 8rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(15, 15, 15, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 4rem 3rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .quiz-title {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .quiz-subtitle {
+      text-align: center;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .quiz-question {
+      margin-bottom: 3rem;
+      display: none;
+    }
+
+    .quiz-question.active {
+      display: block;
+    }
+
+    .question-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .quiz-option {
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .quiz-option:hover {
+      background: rgba(219, 74, 43, 0.1);
+      border-color: rgba(219, 74, 43, 0.5);
+      transform: translateX(10px);
+    }
+
+    .quiz-result {
+      display: none;
+      text-align: center;
+    }
+
+    .quiz-result.active {
+      display: block;
+    }
+
+    .result-archetype {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #DB4A2B;
+      margin-bottom: 1rem;
+    }
+
+    .result-description {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-cta {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #DB4A2B;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+    }
+
+    .quiz-cta:hover {
+      background: #ff6b4a;
+      transform: scale(1.05);
+    }
+
+    .quiz-progress {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .progress-dot.active {
+      background: #DB4A2B;
+      transform: scale(1.3);
+    }
+
+    /* Behind the Scenes */
+    .behind-section {
+      padding: 8rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .behind-title {
+      text-align: center;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .behind-subtitle {
+      text-align: center;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 6rem;
+      font-weight: 300;
+      max-width: 700px;
+    }
+
+    .behind-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    .behind-item {
+      aspect-ratio: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.4s ease;
+    }
+
+    .behind-item:hover {
+      transform: scale(1.05);
+    }
+
+    .behind-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .behind-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .behind-item:hover .behind-overlay {
+      opacity: 1;
+    }
+
+    .behind-label {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
     }
 
     /* Services Cards */
@@ -612,9 +973,7 @@
 
     /* MOBILE OPTIMIZATION */
     @media (max-width: 768px) {
-      body {
-        line-height: 1.6;
-      }
+      body { line-height: 1.6; }
 
       .language-switcher {
         top: 1rem;
@@ -672,8 +1031,78 @@
         font-size: 0.9rem;
       }
 
+      .process-section,
+      .industry-section,
+      .behind-section,
       .services-section {
         padding: 5rem 1.5rem;
+      }
+
+      .process-timeline {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .process-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+      }
+
+      .process-step h3 {
+        font-size: 1.3rem;
+      }
+
+      .industry-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .industry-item {
+        padding: 2rem 1rem;
+      }
+
+      .industry-icon {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .industry-name {
+        font-size: 0.95rem;
+      }
+
+      .quiz-section {
+        padding: 5rem 1.5rem;
+      }
+
+      .quiz-container {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .quiz-title {
+        font-size: 1.8rem;
+      }
+
+      .question-title {
+        font-size: 1.2rem;
+      }
+
+      .quiz-option {
+        padding: 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      .result-archetype {
+        font-size: 2rem;
+      }
+
+      .result-description {
+        font-size: 1.05rem;
+      }
+
+      .behind-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
 
       .cards-grid {
@@ -715,12 +1144,18 @@
         padding: 5rem 1.5rem;
       }
 
-      .portfolio-title {
+      .portfolio-title,
+      .process-title,
+      .industry-title,
+      .behind-title {
         font-size: 2.2rem;
         margin-bottom: 1rem;
       }
 
-      .portfolio-subtitle {
+      .portfolio-subtitle,
+      .process-subtitle,
+      .industry-subtitle,
+      .behind-subtitle {
         font-size: 1.05rem;
         margin-bottom: 3rem;
       }
@@ -830,6 +1265,10 @@
       .email-link {
         font-size: 1.1rem;
       }
+
+      .industry-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -850,17 +1289,21 @@
     <div class="pagination-dot" data-section="3"></div>
     <div class="pagination-dot" data-section="4"></div>
     <div class="pagination-dot" data-section="5"></div>
+    <div class="pagination-dot" data-section="6"></div>
+    <div class="pagination-dot" data-section="7"></div>
+    <div class="pagination-dot" data-section="8"></div>
+    <div class="pagination-dot" data-section="9"></div>
   </div>
 
   <!-- English Content -->
   <div id="content-en">
-    <section class="logo-section" id="home">
+    <section class="logo-section">
       <div class="logo-container">
         <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="ARC Digital Logo">
       </div>
     </section>
 
-    <section class="section" id="intro">
+    <section class="section">
       <div class="intro-content">
         <h1>Crafting the ideal <span class="highlight-wrapper"><span class="asterisk">✽</span><span class="highlight">arc</span></span> for your brand</h1>
         <p class="intro-subtitle">Brand strategy & identity design for businesses that refuse to blend in</p>
@@ -881,7 +1324,162 @@
       </div>
     </section>
 
-    <section class="services-section" id="services">
+    <!-- Process Timeline -->
+    <section class="process-section">
+      <h2 class="process-title">Our Process</h2>
+      <p class="process-subtitle">A proven methodology that transforms vision into reality</p>
+      <div class="process-timeline">
+        <div class="process-step">
+          <div class="process-icon">
+            <div class="process-number">1</div>
+            🔍
+          </div>
+          <h3>Discovery</h3>
+          <p>Deep dive into your brand, market, and vision to uncover unique opportunities</p>
+        </div>
+        <div class="process-step">
+          <div class="process-icon">
+            <div class="process-number">2</div>
+            🎯
+          </div>
+          <h3>Strategy</h3>
+          <p>Develop positioning, messaging, and visual direction aligned with your goals</p>
+        </div>
+        <div class="process-step">
+          <div class="process-icon">
+            <div class="process-number">3</div>
+            ✨
+          </div>
+          <h3>Design</h3>
+          <p>Craft stunning visuals and cohesive brand systems that captivate audiences</p>
+        </div>
+        <div class="process-step">
+          <div class="process-icon">
+            <div class="process-number">4</div>
+            🚀
+          </div>
+          <h3>Launch</h3>
+          <p>Seamless implementation across all touchpoints with ongoing support</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industry Focus -->
+    <section class="industry-section">
+      <h2 class="industry-title">Industries We Serve</h2>
+      <p class="industry-subtitle">Specialized expertise across diverse sectors</p>
+      <div class="industry-grid">
+        <div class="industry-item">
+          <span class="industry-icon">🚗</span>
+          <div class="industry-name">Automotive</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">🏢</span>
+          <div class="industry-name">Real Estate</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">💼</span>
+          <div class="industry-name">Professional Services</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">🛍️</span>
+          <div class="industry-name">Retail</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">💻</span>
+          <div class="industry-name">Technology</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">🏥</span>
+          <div class="industry-name">Healthcare</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+      <div class="quiz-container">
+        <h2 class="quiz-title">Discover Your Brand Archetype</h2>
+        <p class="quiz-subtitle">Answer 3 quick questions to reveal your brand's personality</p>
+        
+        <div class="quiz-progress">
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+
+        <div class="quiz-question active" data-question="1">
+          <h3 class="question-title">What drives your brand?</h3>
+          <div class="quiz-options">
+            <div class="quiz-option" data-answer="innovator">Innovation and cutting-edge solutions</div>
+            <div class="quiz-option" data-answer="ruler">Authority and premium quality</div>
+            <div class="quiz-option" data-answer="creator">Creativity and self-expression</div>
+            <div class="quiz-option" data-answer="caregiver">Care and nurturing relationships</div>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-question="2">
+          <h3 class="question-title">How do you want customers to feel?</h3>
+          <div class="quiz-options">
+            <div class="quiz-option" data-answer="innovator">Excited about the future</div>
+            <div class="quiz-option" data-answer="ruler">Confident and empowered</div>
+            <div class="quiz-option" data-answer="creator">Inspired and imaginative</div>
+            <div class="quiz-option" data-answer="caregiver">Safe and understood</div>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-question="3">
+          <h3 class="question-title">What's your brand's ultimate goal?</h3>
+          <div class="quiz-options">
+            <div class="quiz-option" data-answer="innovator">Revolutionize the industry</div>
+            <div class="quiz-option" data-answer="ruler">Become the market leader</div>
+            <div class="quiz-option" data-answer="creator">Express unique vision</div>
+            <div class="quiz-option" data-answer="caregiver">Make a positive impact</div>
+          </div>
+        </div>
+
+        <div class="quiz-result">
+          <div class="result-archetype" id="archetype-result"></div>
+          <p class="result-description" id="archetype-description"></p>
+          <a href="mailto:contact@arcdigital.ro" class="quiz-cta">Let's Build Your Brand</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Behind the Scenes -->
+    <section class="behind-section">
+      <h2 class="behind-title">The Craft Behind the Brand</h2>
+      <p class="behind-subtitle">A glimpse into our creative process</p>
+      <div class="behind-grid">
+        <div class="behind-item">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=600&fit=crop" alt="Design Tools">
+          <div class="behind-overlay">
+            <span class="behind-label">Tools of the Trade</span>
+          </div>
+        </div>
+        <div class="behind-item">
+          <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=600&fit=crop" alt="Color Palettes">
+          <div class="behind-overlay">
+            <span class="behind-label">Color Exploration</span>
+          </div>
+        </div>
+        <div class="behind-item">
+          <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=600&fit=crop" alt="Typography">
+          <div class="behind-overlay">
+            <span class="behind-label">Typography Study</span>
+          </div>
+        </div>
+        <div class="behind-item">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=600&fit=crop" alt="Creative Workspace">
+          <div class="behind-overlay">
+            <span class="behind-label">Creative Space</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Cards -->
+    <section class="services-section">
       <div class="cards-grid">
         <div class="card">
           <div class="card-inner">
@@ -936,6 +1534,7 @@
       </div>
     </section>
 
+    <!-- Portfolio -->
     <section class="portfolio-section">
       <h2 class="portfolio-title">Featured Work</h2>
       <p class="portfolio-subtitle">A selection of our most impactful brand transformations</p>
@@ -964,9 +1563,10 @@
       </div>
     </section>
 
+    <!-- Companies -->
     <section class="companies">
       <h2 class="companies-title">Trusted by Industry Leaders</h2>
-      <p class="companies-subtitle">We've partnered with leading automotive brands to elevate their market presence</p>
+      <p class="companies-subtitle">We've partnered with leading brands to elevate their market presence</p>
       <div class="logos-section">
         <div class="logos-track">
           <div class="logo-item"><img src="companies/18.png" alt="KIA"></div>
@@ -981,7 +1581,8 @@
       </div>
     </section>
 
-    <section class="contact-section" id="contact">
+    <!-- Contact -->
+    <section class="contact-section">
       <div class="contact-content">
         <h2 class="contact-title">Let's create something amazing together</h2>
         <p class="contact-subtitle">Ready to take your brand to the next level? We're just one message away from turning your vision into reality.</p>
@@ -995,13 +1596,13 @@
 
   <!-- Romanian Content -->
   <div id="content-ro" class="hidden">
-    <section class="logo-section" id="home-ro">
+    <section class="logo-section">
       <div class="logo-container">
         <img src="https://raw.githubusercontent.com/sebibaciu/automatic-train/refs/heads/main/Logoarc2-2JQmkxo5Y2lx7ejC_nXVUg.png" alt="ARC Digital Logo">
       </div>
     </section>
 
-    <section class="section" id="intro-ro">
+    <section class="section">
       <div class="intro-content">
         <h1>Creăm <span class="highlight-wrapper"><span class="asterisk">✽</span><span class="highlight">arcul</span></span> ideal pentru brandul tău</h1>
         <p class="intro-subtitle">Strategie de brand și design de identitate pentru companii care refuză să se confunde cu mulțimea</p>
@@ -1022,7 +1623,162 @@
       </div>
     </section>
 
-    <section class="services-section" id="services-ro">
+    <!-- Process Timeline RO -->
+    <section class="process-section">
+      <h2 class="process-title">Procesul Nostru</h2>
+      <p class="process-subtitle">O metodologie dovedită care transformă viziunea în realitate</p>
+      <div class="process-timeline">
+        <div class="process-step">
+          <div class="process-icon">
+            <div class="process-number">1</div>
+            🔍
+          </div>
+          <h3>Descoperire</h3>
+          <p>Analiză profundă a brandului, pieței și viziunii pentru a descoperi oportunități unice</p>
+        </div>
+        <div class="process-step">
+          <div class="process-icon">
+            <div class="process-number">2</div>
+            🎯
+          </div>
+          <h3>Strategie</h3>
+          <p>Dezvoltăm poziționare, mesagerie și direcție vizuală aliniate cu obiectivele tale</p>
+        </div>
+        <div class="process-step">
+          <div class="process-icon">
+            <div class="process-number">3</div>
+            ✨
+          </div>
+          <h3>Design</h3>
+          <p>Creăm vizuale impresionante și sisteme de brand coezive care captivează</p>
+        </div>
+        <div class="process-step">
+          <div class="process-icon">
+            <div class="process-number">4</div>
+            🚀
+          </div>
+          <h3>Lansare</h3>
+          <p>Implementare fără probleme pe toate punctele de contact cu suport continuu</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industry Focus RO -->
+    <section class="industry-section">
+      <h2 class="industry-title">Industrii pe Care le Servim</h2>
+      <p class="industry-subtitle">Expertiză specializată în diverse sectoare</p>
+      <div class="industry-grid">
+        <div class="industry-item">
+          <span class="industry-icon">🚗</span>
+          <div class="industry-name">Automotive</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">🏢</span>
+          <div class="industry-name">Imobiliare</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">💼</span>
+          <div class="industry-name">Servicii Profesionale</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">🛍️</span>
+          <div class="industry-name">Retail</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">💻</span>
+          <div class="industry-name">Tehnologie</div>
+        </div>
+        <div class="industry-item">
+          <span class="industry-icon">🏥</span>
+          <div class="industry-name">Sănătate</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Section RO -->
+    <section class="quiz-section">
+      <div class="quiz-container">
+        <h2 class="quiz-title">Descoperă Arhetipul Brandului Tău</h2>
+        <p class="quiz-subtitle">Răspunde la 3 întrebări rapide pentru a descoperi personalitatea brandului tău</p>
+        
+        <div class="quiz-progress">
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+
+        <div class="quiz-question active" data-question="1">
+          <h3 class="question-title">Ce motivează brandul tău?</h3>
+          <div class="quiz-options">
+            <div class="quiz-option" data-answer="innovator">Inovație și soluții de ultimă oră</div>
+            <div class="quiz-option" data-answer="ruler">Autoritate și calitate premium</div>
+            <div class="quiz-option" data-answer="creator">Creativitate și exprimare personală</div>
+            <div class="quiz-option" data-answer="caregiver">Grijă și relații de încredere</div>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-question="2">
+          <h3 class="question-title">Cum vrei să se simtă clienții?</h3>
+          <div class="quiz-options">
+            <div class="quiz-option" data-answer="innovator">Încântați de viitor</div>
+            <div class="quiz-option" data-answer="ruler">Încrezători și împuterniciți</div>
+            <div class="quiz-option" data-answer="creator">Inspirați și imaginativi</div>
+            <div class="quiz-option" data-answer="caregiver">În siguranță și înțeleși</div>
+          </div>
+        </div>
+
+        <div class="quiz-question" data-question="3">
+          <h3 class="question-title">Care este scopul final al brandului tău?</h3>
+          <div class="quiz-options">
+            <div class="quiz-option" data-answer="innovator">Revoluționează industria</div>
+            <div class="quiz-option" data-answer="ruler">Devino lider de piață</div>
+            <div class="quiz-option" data-answer="creator">Exprimă viziune unică</div>
+            <div class="quiz-option" data-answer="caregiver">Fă un impact pozitiv</div>
+          </div>
+        </div>
+
+        <div class="quiz-result">
+          <div class="result-archetype" id="archetype-result-ro"></div>
+          <p class="result-description" id="archetype-description-ro"></p>
+          <a href="mailto:contact@arcdigital.ro" class="quiz-cta">Hai să Construim Brandul Tău</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Behind the Scenes RO -->
+    <section class="behind-section">
+      <h2 class="behind-title">Meșteșugul Din Spatele Brandului</h2>
+      <p class="behind-subtitle">O privire în procesul nostru creativ</p>
+      <div class="behind-grid">
+        <div class="behind-item">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=600&fit=crop" alt="Unelte de Design">
+          <div class="behind-overlay">
+            <span class="behind-label">Unelte ale Meșteșugului</span>
+          </div>
+        </div>
+        <div class="behind-item">
+          <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=600&fit=crop" alt="Palete de Culori">
+          <div class="behind-overlay">
+            <span class="behind-label">Explorare Cromatică</span>
+          </div>
+        </div>
+        <div class="behind-item">
+          <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=600&fit=crop" alt="Tipografie">
+          <div class="behind-overlay">
+            <span class="behind-label">Studiu Tipografic</span>
+          </div>
+        </div>
+        <div class="behind-item">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=600&fit=crop" alt="Spațiu Creativ">
+          <div class="behind-overlay">
+            <span class="behind-label">Spațiu Creativ</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Cards RO -->
+    <section class="services-section">
       <div class="cards-grid">
         <div class="card">
           <div class="card-inner">
@@ -1077,6 +1833,7 @@
       </div>
     </section>
 
+    <!-- Portfolio RO -->
     <section class="portfolio-section">
       <h2 class="portfolio-title">Proiecte Distinctive</h2>
       <p class="portfolio-subtitle">O selecție a celor mai impactante transformări de brand</p>
@@ -1105,9 +1862,10 @@
       </div>
     </section>
 
+    <!-- Companies RO -->
     <section class="companies">
       <h2 class="companies-title">Încrederea Liderilor din Industrie</h2>
-      <p class="companies-subtitle">Am colaborat cu branduri auto de top pentru a le ridica prezența pe piață</p>
+      <p class="companies-subtitle">Am colaborat cu branduri de top pentru a le ridica prezența pe piață</p>
       <div class="logos-section">
         <div class="logos-track">
           <div class="logo-item"><img src="companies/18.png" alt="KIA"></div>
@@ -1122,7 +1880,8 @@
       </div>
     </section>
 
-    <section class="contact-section" id="contact-ro">
+    <!-- Contact RO -->
+    <section class="contact-section">
       <div class="contact-content">
         <h2 class="contact-title">Hai să creăm ceva extraordinar împreună</h2>
         <p class="contact-subtitle">Pregătit să-ți duci brandul la următorul nivel? Suntem la doar un mesaj distanță de a transforma viziunea ta în realitate.</p>
@@ -1161,11 +1920,111 @@
         setTimeout(() => {
           ScrollTrigger.refresh();
           updatePagination();
+          initQuiz();
         }, 100);
       });
     });
 
-    // Initialize infinite carousel
+    // Quiz Functionality
+    const archetypes = {
+      innovator: {
+        en: {
+          name: 'The Innovator',
+          description: 'Your brand is driven by cutting-edge thinking and revolutionary ideas. You thrive on pushing boundaries and creating the future.'
+        },
+        ro: {
+          name: 'Inovatorul',
+          description: 'Brandul tău este motivat de gândire de ultimă oră și idei revoluționare. Prosperi prin împingerea limitelor și crearea viitorului.'
+        }
+      },
+      ruler: {
+        en: {
+          name: 'The Ruler',
+          description: 'Your brand exudes authority and premium quality. You lead the market with confidence and set the standards others follow.'
+        },
+        ro: {
+          name: 'Conducătorul',
+          description: 'Brandul tău emană autoritate și calitate premium. Conduci piața cu încredere și stabilești standardele pe care alții le urmează.'
+        }
+      },
+      creator: {
+        en: {
+          name: 'The Creator',
+          description: 'Your brand is all about imagination and self-expression. You inspire others through your unique vision and artistic approach.'
+        },
+        ro: {
+          name: 'Creatorul',
+          description: 'Brandul tău se bazează pe imaginație și exprimare personală. Inspiri pe alții prin viziunea ta unică și abordarea artistică.'
+        }
+      },
+      caregiver: {
+        en: {
+          name: 'The Caregiver',
+          description: 'Your brand is built on trust and nurturing relationships. You make customers feel safe, understood, and valued.'
+        },
+        ro: {
+          name: 'Îngrijitorul',
+          description: 'Brandul tău este construit pe încredere și relații de îngrijire. Faci clienții să se simtă în siguranță, înțeleși și apreciați.'
+        }
+      }
+    };
+
+    function initQuiz() {
+      const lang = document.documentElement.lang || 'en';
+      const quizContainers = document.querySelectorAll('.quiz-container');
+      
+      quizContainers.forEach(container => {
+        if (!container.closest('.hidden')) {
+          const answers = {};
+          let currentQuestion = 1;
+
+          const questions = container.querySelectorAll('.quiz-question');
+          const progressDots = container.querySelectorAll('.progress-dot');
+          const options = container.querySelectorAll('.quiz-option');
+          const result = container.querySelector('.quiz-result');
+          const resultArchetype = container.querySelector('[id^="archetype-result"]');
+          const resultDescription = container.querySelector('[id^="archetype-description"]');
+
+          options.forEach(option => {
+            option.addEventListener('click', () => {
+              const answer = option.dataset.answer;
+              answers[currentQuestion] = answer;
+
+              questions.forEach(q => q.classList.remove('active'));
+              
+              if (currentQuestion < 3) {
+                currentQuestion++;
+                questions[currentQuestion - 1].classList.add('active');
+                progressDots.forEach((dot, i) => {
+                  dot.classList.toggle('active', i < currentQuestion);
+                });
+              } else {
+                const archetype = calculateArchetype(answers);
+                showResult(archetype);
+              }
+            });
+          });
+
+          function calculateArchetype(ans) {
+            const counts = {};
+            Object.values(ans).forEach(a => {
+              counts[a] = (counts[a] || 0) + 1;
+            });
+            return Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+          }
+
+          function showResult(archetype) {
+            questions.forEach(q => q.classList.remove('active'));
+            result.classList.add('active');
+            const data = archetypes[archetype][lang];
+            resultArchetype.textContent = data.name;
+            resultDescription.textContent = data.description;
+          }
+        }
+      });
+    }
+
+    // Initialize carousel
     const initInfiniteCarousel = () => {
       const tracks = document.querySelectorAll('.logos-track');
       tracks.forEach(track => {
@@ -1174,7 +2033,10 @@
       });
     };
 
-    document.addEventListener('DOMContentLoaded', initInfiniteCarousel);
+    document.addEventListener('DOMContentLoaded', () => {
+      initInfiniteCarousel();
+      initQuiz();
+    });
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -1195,7 +2057,7 @@
     // Pagination
     const getAllSections = () => {
       const activeContent = document.querySelector('#content-en:not(.hidden), #content-ro:not(.hidden)');
-      return Array.from(activeContent.querySelectorAll('.logo-section, .section, .services-section, .portfolio-section, .companies, .contact-section'));
+      return Array.from(activeContent.querySelectorAll('.logo-section, .section, .process-section, .industry-section, .quiz-section, .behind-section, .services-section, .portfolio-section, .companies, .contact-section'));
     };
 
     const dots = document.querySelectorAll('.pagination-dot');
@@ -1269,6 +2131,63 @@
       });
     };
 
+    // Process animation
+    const animateProcess = () => {
+      const steps = document.querySelectorAll('.process-step');
+      steps.forEach((step, i) => {
+        gsap.from(step, {
+          scrollTrigger: {
+            trigger: step,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          },
+          y: 60,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          delay: i * 0.1
+        });
+      });
+    };
+
+    // Industry animation
+    const animateIndustry = () => {
+      const items = document.querySelectorAll('.industry-item');
+      items.forEach((item, i) => {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          },
+          scale: 0.8,
+          opacity: 0,
+          duration: 0.6,
+          ease: 'back.out(1.7)',
+          delay: i * 0.08
+        });
+      });
+    };
+
+    // Behind scenes animation
+    const animateBehind = () => {
+      const items = document.querySelectorAll('.behind-item');
+      items.forEach((item, i) => {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          },
+          y: 80,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          delay: i * 0.1
+        });
+      });
+    };
+
     // Portfolio animation
     const animatePortfolio = () => {
       const portfolioItems = document.querySelectorAll('.portfolio-item');
@@ -1289,9 +2208,9 @@
       });
     };
 
-    // Section animations
-    const animateSections = () => {
-      gsap.utils.toArray('.portfolio-title, .companies-title').forEach(title => {
+    // Section titles animation
+    const animateTitles = () => {
+      gsap.utils.toArray('.portfolio-title, .process-title, .industry-title, .behind-title, .companies-title, .quiz-title').forEach(title => {
         gsap.from(title, {
           scrollTrigger: {
             trigger: title,
@@ -1305,7 +2224,7 @@
         });
       });
 
-      gsap.utils.toArray('.portfolio-subtitle, .companies-subtitle').forEach(subtitle => {
+      gsap.utils.toArray('.portfolio-subtitle, .process-subtitle, .industry-subtitle, .behind-subtitle, .companies-subtitle, .quiz-subtitle').forEach(subtitle => {
         gsap.from(subtitle, {
           scrollTrigger: {
             trigger: subtitle,
@@ -1325,8 +2244,11 @@
     setTimeout(() => {
       animateLogos();
       animateCards();
+      animateProcess();
+      animateIndustry();
+      animateBehind();
       animatePortfolio();
-      animateSections();
+      animateTitles();
       updatePagination();
     }, 100);
 
